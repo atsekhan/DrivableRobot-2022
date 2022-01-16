@@ -149,9 +149,6 @@ public class Robot extends TimedRobot {
 
   private void configureRobotSettings() {
 
-
-    System.out.println("****** ----- **** CF1");
-
     switch (RobotProperties.robotModel) {
       case FRANKENBOT:
 
@@ -176,8 +173,6 @@ public class Robot extends TimedRobot {
         PneumaticsConstants.compressorCANID = 0;
         PneumaticsConstants.SolenoidChannel = new int[] { 0, 7 };
 
-        System.out.println("****** ----- **** CF2");
-        
         //Robot.simpleCSVLogger.writeData("******  ---- **** Subsystem Configured", "FRANKENBOT");
         break;
       case DEMOBOARD:
@@ -208,8 +203,6 @@ public class Robot extends TimedRobot {
         RobotProperties.driveInterface = DriveInterface.SPLITSTICK;
         RobotProperties.isPneumatics = true;
     }
-
-    System.out.println("End CRS" + PneumaticsConstants.compressorCANID);
 
   }
 
