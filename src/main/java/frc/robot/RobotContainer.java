@@ -24,6 +24,7 @@ import frc.robot.subsystems.NavigationControlSubsystem;
 import frc.robot.subsystems.NetworkTablesSubsystem;
 import frc.robot.subsystems.PneumaticsSubsystem;
 import frc.robot.subsystems.PowerDistributionPanelSubsystem;
+import frc.robot.subsystems.ShooterSubsystem;
 import frc.robot.subsystems.ShuffleboardSubsystem;
 import frc.robot.subsystems.SmartDashboardSubsystem;
 /**
@@ -54,6 +55,8 @@ public class RobotContainer {
 
   // TODO: remove this temporary test when done testing the prototypes
   public static final TEMPShooterTestSubsystem shooterTest = new TEMPShooterTestSubsystem();
+
+  public static final ShooterSubsystem shooterSubsystem = new ShooterSubsystem();
 
   // PowerDistributionBoard - used for telemetry information
   public static final PowerDistributionPanelSubsystem pdpSubsystem = new PowerDistributionPanelSubsystem();
@@ -149,10 +152,16 @@ public class RobotContainer {
         new JoystickButton(driveStick, 9).whenPressed(new InstantCommand(shooterTest::motorOff, shooterTest));
 
       case DEMOBOARD:
-        Robot.simpleCSVLogger.writeData("ButtonBinding Configured");
+        
+        new JoystickButton(driveStick, 10).whenPressed(new InstantCommand(shooterSubsystem::calibrateForwardSlow, shooterSubsystem));
+        new JoystickButton(driveStick, 10).whenReleased(new InstantCommand(shooterSubsystem::tiltMotorOff, shooterSubsystem));
+        new JoystickButton(driveStick, 9).whenPressed(new InstantCommand(shooterSubsystem::calibrateBackSlow, shooterTest));
+        new JoystickButton(driveStick, 9).whenPressed(new InstantCommand(shooterSubsystem::tiltMotorOff, shooterTest));
 
       default:
     }
+
+    Robot.simpleCSVLogger.writeData("ButtonBinding Configured");
 
   }
 

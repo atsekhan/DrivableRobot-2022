@@ -47,6 +47,8 @@ public final class Constants {
         public static boolean isNaVX;
         public static DriveInterface driveInterface = DriveInterface.ONESTICK;
         public static boolean isPneumatics;
+        public static boolean isShooter;
+        public static boolean isTEMPShooterTest;
 
     }
 
@@ -166,6 +168,44 @@ public final class Constants {
         // index 0 is forward channel
         // index 1 is reverse channel
         public static int[] SolenoidChannel ;
+    }
+
+    public static final class ShooterConstants {
+
+        public static int tiltMotorPortID = 4;
+
+        // Closed loop constants
+        // How long we wait for a configuration change to happen before we give up and
+        // report a failure in milliseconds
+        public final static int configureTimeoutMs = 30;
+        // Full motor output value
+        public final static int fullMotorOutput = 1023;
+        // How many milliseconds between each closed loop call
+        public final static int closedLoopPeriodMs = 1;
+        // Motor neutral dead-band, set to the minimum 0.1%
+        public final static double NeutralDeadband = 0.001;
+
+        public final static int Izone_0 = 500;
+        public final static double PeakOutput_0 = 1;
+
+        // Closed loop PAN PID parameter values 
+        // Modified for Closed loop position control
+        public final static int PID_PAN = 0;
+        public final static double P_PAN = 1.5;
+        public final static double I_PAN = 0.0002;
+        public final static double D_PAN = 15;
+        public final static double F_PAN = 0; // set to zero for position closed loop
+        // Allowable error to exit movement methods
+        public static int panDefaultAcceptableError = 1;
+        public static int panAcceleration = 50;
+        public static int panCruiseVelocity = 50;
+        public final static int panSmoothing = 3;
+
+        /**
+        * Talon PID methods often demand slot ID's, so we need to do this :(
+        */
+        public final static int SLOT_0 = 0;
+
     }
 
     public static final int TeamNumber = 999;

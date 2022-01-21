@@ -8,14 +8,24 @@ import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
 
 public class TEMPShooterTestSubsystem extends SubsystemBase {
-  public WPI_TalonSRX shooterMotorController1 = new WPI_TalonSRX(16);
-  public WPI_TalonSRX shooterMotorController2 = new WPI_TalonSRX(4);
+  public WPI_TalonSRX shooterMotorController1;
+  public WPI_TalonSRX shooterMotorController2;
 
   /** Creates a new ShooterTest. */
   public TEMPShooterTestSubsystem() {
-    shooterMotorController1.setInverted(true);
+
+    if (Constants.RobotProperties.isTEMPShooterTest) {
+
+      shooterMotorController1 = new WPI_TalonSRX(16);
+      shooterMotorController2 = new WPI_TalonSRX(4);
+    
+      shooterMotorController1.setInverted(true);
+
+    }
+
   }
 
   public void motorOn() {

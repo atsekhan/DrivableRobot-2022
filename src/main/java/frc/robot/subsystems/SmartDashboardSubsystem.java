@@ -6,6 +6,7 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.Constants;
 import frc.robot.RobotContainer;
 
 public class SmartDashboardSubsystem extends SubsystemBase {
@@ -40,9 +41,19 @@ public class SmartDashboardSubsystem extends SubsystemBase {
     SmartDashboard.putNumber("Right Encoder Speed", RobotContainer.driveSubsystem.getRightEncoderSpeed());
   }
 
+  public void updateShooterValues() {
+    SmartDashboard.putNumber("Pan Encoder", RobotContainer.shooterSubsystem.getPanEncoder());
+    SmartDashboard.putNumber("Pan Error", RobotContainer.shooterSubsystem.getPanError() );
+  }
+
   public void updateAllDisplays() {
     updateIMUValues();
     updateDriveSubsystemTelemetry();
+
+    if (Constants.RobotProperties.isShooter) {
+      updateShooterValues();
+    }
+    
   }
 
   // Trajectory/kinematic driving update; updated from NavigationControlSubsystem

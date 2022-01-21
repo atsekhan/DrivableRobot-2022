@@ -13,6 +13,7 @@ import frc.robot.Constants.PigeonIMU;
 import frc.robot.Constants.PneumaticsConstants;
 import frc.robot.Constants.RobotDriveChassisConstants;
 import frc.robot.Constants.RobotProperties;
+import frc.robot.Constants.ShooterConstants;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -156,6 +157,7 @@ public class Robot extends TimedRobot {
         RobotProperties.isNaVX = true;
         RobotProperties.driveInterface = DriveInterface.ONESTICK;
         RobotProperties.isPneumatics = true;
+        RobotProperties.isTEMPShooterTest = true;
 
         // Drivetrain settings
         DriveConstants.leftMotorPortID = new int[] { 9 };
@@ -181,6 +183,7 @@ public class Robot extends TimedRobot {
         RobotProperties.isNaVX = false;
         RobotProperties.driveInterface = DriveInterface.ONESTICK;
         RobotProperties.isPneumatics = false;
+        RobotProperties.isShooter = true;
 
         // Drivetrain settings
         DriveConstants.leftMotorPortID = new int[] { 1 };
@@ -192,6 +195,9 @@ public class Robot extends TimedRobot {
 
         // IMU
         PigeonIMU.pigeonIMUId = 3;
+
+        // Shooter settings
+        ShooterConstants.tiltMotorPortID = 4;
 
         Robot.simpleCSVLogger.writeData("Subsystem Configured", "DEMOBOARD");
 
