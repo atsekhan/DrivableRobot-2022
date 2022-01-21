@@ -14,7 +14,7 @@ import frc.robot.Constants;
 
 public class ShooterSubsystem extends SubsystemBase {
 
-  public static final double CALIBRATEMOTORPOWER = 0.05;
+  public static final double CALIBRATEMOTORPOWER = 0.3;
 
   public static WPI_TalonSRX panMotorController;
 
@@ -73,12 +73,12 @@ public class ShooterSubsystem extends SubsystemBase {
 
   public void calibrateForwardSlow() {
     panMotorController.setNeutralMode(NeutralMode.Brake);
-    panMotorController.set(ControlMode.PercentOutput, 0.00005);
+    panMotorController.set(ControlMode.PercentOutput, CALIBRATEMOTORPOWER);
   }
 
   public void calibrateBackSlow() {
     panMotorController.setNeutralMode(NeutralMode.Brake);
-    panMotorController.set(ControlMode.PercentOutput, -0.00005);
+    panMotorController.set(ControlMode.PercentOutput, -CALIBRATEMOTORPOWER);
   }
 
   public void tiltMotorOff() {
