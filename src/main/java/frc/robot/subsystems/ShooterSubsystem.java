@@ -13,7 +13,7 @@ import frc.robot.Constants;
 
 public class ShooterSubsystem extends SubsystemBase {
 
-  public static final double CALIBRATEMOTORPOWER = 0.3;
+  public static final double CALIBRATEMOTORPOWER = 0.05;
 
   public static WPI_TalonSRX panMotorController;
 
