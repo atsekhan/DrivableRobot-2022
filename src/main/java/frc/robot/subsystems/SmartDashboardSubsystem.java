@@ -42,6 +42,7 @@ public class SmartDashboardSubsystem extends SubsystemBase {
 
   public void updateAllDisplays() {
     updateIMUValues();
+    updateDriveSubsystemTelemetry();
   }
 
   // Trajectory/kinematic driving update; updated from NavigationControlSubsystem
@@ -54,6 +55,6 @@ public class SmartDashboardSubsystem extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    //updateAllDisplays();
+    updateAllDisplays();
   }
 }
