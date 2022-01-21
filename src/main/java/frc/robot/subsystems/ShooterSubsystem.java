@@ -78,7 +78,7 @@ public class ShooterSubsystem extends SubsystemBase {
 
   public void calibrateBackSlow() {
     panMotorController.setNeutralMode(NeutralMode.Brake);
-    panMotorController.set(ControlMode.PercentOutput, -CALIBRATEMOTORPOWER);
+    panMotorController.set(ControlMode.PercentOutput, CALIBRATEMOTORPOWER * (-1));
   }
 
   public void tiltMotorOff() {
