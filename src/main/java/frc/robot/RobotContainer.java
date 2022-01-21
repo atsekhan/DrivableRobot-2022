@@ -155,8 +155,8 @@ public class RobotContainer {
         
         new JoystickButton(driveStick, 10).whenPressed(new InstantCommand(shooterSubsystem::calibrateForwardSlow, shooterSubsystem));
         new JoystickButton(driveStick, 10).whenReleased(new InstantCommand(shooterSubsystem::tiltMotorOff, shooterSubsystem));
-        new JoystickButton(driveStick, 9).whenPressed(new InstantCommand(shooterSubsystem::calibrateBackSlow, shooterTest));
-        new JoystickButton(driveStick, 9).whenPressed(new InstantCommand(shooterSubsystem::tiltMotorOff, shooterTest));
+        new JoystickButton(driveStick, 9).whenPressed(new InstantCommand(shooterSubsystem::calibrateBackSlow, shooterSubsystem));
+        new JoystickButton(driveStick, 9).whenPressed(new InstantCommand(shooterSubsystem::tiltMotorOff, shooterSubsystem));
 
       default:
     }
