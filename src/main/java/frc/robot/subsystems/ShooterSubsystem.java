@@ -4,6 +4,7 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
@@ -26,7 +27,7 @@ public class ShooterSubsystem extends SubsystemBase {
       panMotorController.configSelectedFeedbackSensor(FeedbackDevice.PulseWidthEncodedPosition);
 
       // Enable PID for the tilt motor
-      configurePanMotorControllerForPosition();
+      // configurePanMotorControllerForPosition();
     }
 
   }
@@ -72,12 +73,12 @@ public class ShooterSubsystem extends SubsystemBase {
 
   public void calibrateForwardSlow() {
     panMotorController.setNeutralMode(NeutralMode.Brake);
-    panMotorController.set(CALIBRATEMOTORPOWER);
+    panMotorController.set(ControlMode.PercentOutput, 0.005);
   }
 
   public void calibrateBackSlow() {
     panMotorController.setNeutralMode(NeutralMode.Brake);
-    panMotorController.set(CALIBRATEMOTORPOWER*(-1));
+    panMotorController.set(ControlMode.PercentOutput, -0.005);
   }
 
   public void tiltMotorOff() {
