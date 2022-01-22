@@ -14,7 +14,7 @@ import frc.robot.Constants;
 
 public class ShooterSubsystem extends SubsystemBase {
 
-  public static final double CALIBRATEMOTORPOWER = 0.1;
+  public static final double CALIBRATEMOTORPOWER = 0.3;
 
   public static WPI_TalonSRX panMotorController;
 
@@ -22,9 +22,10 @@ public class ShooterSubsystem extends SubsystemBase {
   public ShooterSubsystem() {
 
     if (Constants.RobotProperties.isShooter) {
-      panMotorController = new WPI_TalonSRX(Constants.ShooterConstants.tiltMotorPortID);
+      //panMotorController = new WPI_TalonSRX(Constants.ShooterConstants.tiltMotorPortID);
+      panMotorController = new WPI_TalonSRX(5);
       panMotorController.configFactoryDefault();
-      panMotorController.configSelectedFeedbackSensor(FeedbackDevice.PulseWidthEncodedPosition);
+      // panMotorController.configSelectedFeedbackSensor(FeedbackDevice.PulseWidthEncodedPosition);
 
       // Enable PID for the tilt motor
       // configurePanMotorControllerForPosition();
@@ -72,16 +73,24 @@ public class ShooterSubsystem extends SubsystemBase {
   } // End configurePanMotorControllerForPosition
 
   public void calibrateForwardSlow() {
+
+    System.out.println("*** T F");
     panMotorController.setNeutralMode(NeutralMode.Brake);
     panMotorController.set(ControlMode.PercentOutput, CALIBRATEMOTORPOWER);
+    //panMotorController.setInverted(false);
+    //panMotorController.set(CALIBRATEMOTORPOWER);
   }
 
   public void calibrateBackSlow() {
+    System.out.println("*** T B");
     panMotorController.setNeutralMode(NeutralMode.Brake);
     panMotorController.set(ControlMode.PercentOutput, CALIBRATEMOTORPOWER * (-1));
+    //panMotorController.setInverted(true);
+    //panMotorController.set(CALIBRATEMOTORPOWER);
   }
 
   public void tiltMotorOff() {
+    System.out.println("*** T OFF");
     panMotorController.setNeutralMode(NeutralMode.Coast);
     panMotorController.set(0);
   }

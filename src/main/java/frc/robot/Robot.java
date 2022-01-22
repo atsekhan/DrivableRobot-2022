@@ -11,6 +11,7 @@ import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.DriveInterface;
 import frc.robot.Constants.PigeonIMU;
 import frc.robot.Constants.PneumaticsConstants;
+import frc.robot.Constants.PotentiometerConstants;
 import frc.robot.Constants.RobotDriveChassisConstants;
 import frc.robot.Constants.RobotProperties;
 import frc.robot.Constants.ShooterConstants;
@@ -184,6 +185,7 @@ public class Robot extends TimedRobot {
         RobotProperties.driveInterface = DriveInterface.ONESTICK;
         RobotProperties.isPneumatics = false;
         RobotProperties.isShooter = true;
+        RobotProperties.isPotentiometer = true;
 
         // Drivetrain settings
         DriveConstants.leftMotorPortID = new int[] { 1 };
@@ -198,6 +200,10 @@ public class Robot extends TimedRobot {
 
         // Shooter settings
         ShooterConstants.tiltMotorPortID = 4;
+
+        //potentiometer
+        PotentiometerConstants.PotentiometerPort = 3;
+        
 
         Robot.simpleCSVLogger.writeData("Subsystem Configured", "DEMOBOARD");
 

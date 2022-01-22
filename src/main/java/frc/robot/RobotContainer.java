@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.Constants.DriveInterface;
 import frc.robot.Constants.OIConstants;
+import frc.robot.Constants.PotentiometerConstants;
 import frc.robot.Constants.RobotProperties;
 import frc.robot.commands.DriveManuallyCommand;
 import frc.robot.commands.ExampleCommand;
@@ -23,6 +24,7 @@ import frc.robot.subsystems.IMUPassthroughSubsystem;
 import frc.robot.subsystems.NavigationControlSubsystem;
 import frc.robot.subsystems.NetworkTablesSubsystem;
 import frc.robot.subsystems.PneumaticsSubsystem;
+import frc.robot.subsystems.PotentiometerSubsystem;
 import frc.robot.subsystems.PowerDistributionPanelSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
 import frc.robot.subsystems.ShuffleboardSubsystem;
@@ -57,6 +59,8 @@ public class RobotContainer {
   public static final TEMPShooterTestSubsystem shooterTest = new TEMPShooterTestSubsystem();
 
   public static final ShooterSubsystem shooterSubsystem = new ShooterSubsystem();
+
+  public static final PotentiometerSubsystem potentiometerSubsystem = new PotentiometerSubsystem();
 
   // PowerDistributionBoard - used for telemetry information
   public static final PowerDistributionPanelSubsystem pdpSubsystem = new PowerDistributionPanelSubsystem();
@@ -151,12 +155,16 @@ public class RobotContainer {
         new JoystickButton(driveStick, 10).whenPressed(new InstantCommand(shooterTest::motorOn, shooterTest));
         new JoystickButton(driveStick, 9).whenPressed(new InstantCommand(shooterTest::motorOff, shooterTest));
 
+        break;
+
       case DEMOBOARD:
         
         new JoystickButton(driveStick, 9).whenPressed(new InstantCommand(shooterSubsystem::calibrateForwardSlow, shooterSubsystem));
         new JoystickButton(driveStick, 9).whenReleased(new InstantCommand(shooterSubsystem::tiltMotorOff, shooterSubsystem));
         new JoystickButton(driveStick, 10).whenPressed(new InstantCommand(shooterSubsystem::calibrateBackSlow, shooterSubsystem));
-        new JoystickButton(driveStick, 10).whenPressed(new InstantCommand(shooterSubsystem::tiltMotorOff, shooterSubsystem));
+        new JoystickButton(driveStick, 10).whenReleased(new InstantCommand(shooterSubsystem::tiltMotorOff, shooterSubsystem));
+
+        break;
 
       default:
     }

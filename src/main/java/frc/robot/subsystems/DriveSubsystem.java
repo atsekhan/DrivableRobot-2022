@@ -152,7 +152,7 @@ public class DriveSubsystem extends SubsystemBase {
 
   public void manualDrive(double move, double turn) {
     // drive.arcadeDrive(deadbandMove(move), deadbandTurn(turn));
-    System.out.println("D X "+move + " Y " + turn);
+    // System.out.println("D X "+move + " Y " + turn);
     drive.arcadeDrive(move, turn);
   }
 

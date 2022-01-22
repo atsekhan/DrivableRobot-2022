@@ -34,7 +34,7 @@ public class DriveManuallyCommand extends CommandBase {
         move = RobotContainer.driveStick.getY() * (-1);
         turn = RobotContainer.driveStick.getX();
 
-        System.out.println("Drive: X " + move + " Y " + turn);
+        // System.out.println("Drive: X " + move + " Y " + turn);
 
         break;
       case XBOXANDSTICK: // 1 stick and XBOX controller are created

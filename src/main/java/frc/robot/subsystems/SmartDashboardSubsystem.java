@@ -46,15 +46,23 @@ public class SmartDashboardSubsystem extends SubsystemBase {
     SmartDashboard.putNumber("Pan Error", RobotContainer.shooterSubsystem.getPanError() );
   }
 
+  public void updatePotentiometerValues() {
+    SmartDashboard.putNumber("Potentiometer Value", RobotContainer.potentiometerSubsystem.getPotVal());
+  }
+
   public void updateAllDisplays() {
     updateIMUValues();
     updateDriveSubsystemTelemetry();
 
     if (Constants.RobotProperties.isShooter) {
-      updateShooterValues();
+       updateShooterValues();
     }
-    
+    if (Constants.RobotProperties.isPotentiometer) {
+      updatePotentiometerValues();
+    }
+   
   }
+
 
   // Trajectory/kinematic driving update; updated from NavigationControlSubsystem
   public void updateMeterPrint(double left, double right) {

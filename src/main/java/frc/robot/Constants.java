@@ -49,6 +49,7 @@ public final class Constants {
         public static boolean isPneumatics;
         public static boolean isShooter;
         public static boolean isTEMPShooterTest;
+        public static boolean isPotentiometer;
 
     }
 
@@ -169,10 +170,14 @@ public final class Constants {
         // index 1 is reverse channel
         public static int[] SolenoidChannel ;
     }
+    public static final class PotentiometerConstants {
 
+        public static int PotentiometerPort = 3;
+
+    }
     public static final class ShooterConstants {
 
-        public static int tiltMotorPortID = 4;
+        public static int tiltMotorPortID = 5;
 
         // Closed loop constants
         // How long we wait for a configuration change to happen before we give up and
