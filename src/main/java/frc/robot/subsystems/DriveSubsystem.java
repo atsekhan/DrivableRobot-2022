@@ -13,6 +13,7 @@ import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.StatusFrame;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 
+import frc.robot.Constants;
 import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.RobotDriveChassisConstants;
 
@@ -34,7 +35,7 @@ public class DriveSubsystem extends SubsystemBase {
      * defaults setup followers set controller orientation set encoder phase
      */
 
-    System.out.println("DS L " + DriveConstants.leftMotorPortID[0] + " R " + DriveConstants.rightMotorPortID[0]);
+    System.out.println("DS L " + DriveConstants.leftMotorPortID[0] + " R " + DriveConstants.rightMotorPortID[0] + " Number of motors per side " + DriveConstants.rightMotorPortID.length);
 
     for (int motor = 0; motor < DriveConstants.rightMotorPortID.length; motor++) {
       rightDriveTalonFX[motor] = new WPI_TalonFX(DriveConstants.rightMotorPortID[motor]);
@@ -42,10 +43,12 @@ public class DriveSubsystem extends SubsystemBase {
 
       if (motor == 0) { // setup master
         rightDriveTalonFX[motor].set(ControlMode.PercentOutput, 0); // set the motor to Percent Output with Default of 0
-        rightDriveTalonFX[motor].setInverted(true); // right side will be inverted
+        rightDriveTalonFX[motor].setInverted( ! Constants.DriveConstants.isInvertdGearBox); // right side will be inverted
       } else { // setup followers
         rightDriveTalonFX[motor].follow(rightDriveTalonFX[0]);
         rightDriveTalonFX[motor].setInverted(InvertType.FollowMaster); // set green lights when going forward
+        System.out.println("RM " + motor + "IT");
+        //rightDriveTalonFX[motor].setInverted(true);
       }
     }
 
@@ -54,10 +57,12 @@ public class DriveSubsystem extends SubsystemBase {
       leftDriveTalonFX[motor].configFactoryDefault(); // reset the controller to defaults
       if (motor == 0) { // setup master
         leftDriveTalonFX[motor].set(ControlMode.PercentOutput, 0); // set the motor to Percent Output with Default of 0
-        leftDriveTalonFX[motor].setInverted(false); // left side will NOT be inverted
+        leftDriveTalonFX[motor].setInverted(Constants.DriveConstants.isInvertdGearBox); // left side will NOT be inverted
       } else { // setup followers
         leftDriveTalonFX[motor].follow(leftDriveTalonFX[0]);
         leftDriveTalonFX[motor].setInverted(InvertType.FollowMaster); // set green lights when going forward
+        System.out.println("LM " + motor + "IF");
+        //leftDriveTalonFX[motor].setInverted(false);
       }
     }
 
