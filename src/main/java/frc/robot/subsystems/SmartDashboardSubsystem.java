@@ -51,7 +51,11 @@ public class SmartDashboardSubsystem extends SubsystemBase {
   }
 
   public void updateAllDisplays() {
-    updateIMUValues();
+
+    if (Constants.RobotProperties.isIMU) {
+      //updateIMUValues();
+    }
+
     updateDriveSubsystemTelemetry();
 
     if (Constants.RobotProperties.isShooter) {

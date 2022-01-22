@@ -26,16 +26,17 @@ public class DriveManuallyCommand extends CommandBase {
   public void execute() {
 
     double move = 0, turn = 0;
+
+    //System.out.println("DR I " + RobotProperties.driveInterface.name());
+
     switch (RobotProperties.driveInterface) {
       case SPLITSTICK: // add 2 sticks
         move = RobotContainer.driveStick.getY() * (-1);
         turn = RobotContainer.turnStick.getX();
+        break;
       case ONESTICK:
         move = RobotContainer.driveStick.getY() * (-1);
         turn = RobotContainer.driveStick.getX();
-
-        // System.out.println("Drive: X " + move + " Y " + turn);
-
         break;
       case XBOXANDSTICK: // 1 stick and XBOX controller are created
       case XBOX: // just the XBOX controller

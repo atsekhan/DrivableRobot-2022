@@ -155,12 +155,14 @@ public class Robot extends TimedRobot {
       case FRANKENBOT:
 
         // Subsystem Settings
+        RobotProperties.isIMU = true;
         RobotProperties.isNaVX = true;
         RobotProperties.driveInterface = DriveInterface.ONESTICK;
         RobotProperties.isPneumatics = true;
         RobotProperties.isTEMPShooterTest = true;
 
         // Drivetrain settings
+        DriveConstants.isInvertdGearBox = false;
         DriveConstants.leftMotorPortID = new int[] { 9 };
         DriveConstants.rightMotorPortID = new int[] { 10 };
         DriveConstants.kLeftEncoderPorts = new int[] { 9 };
@@ -181,6 +183,7 @@ public class Robot extends TimedRobot {
       case DEMOBOARD:
 
         // Subsystem Settings
+        RobotProperties.isIMU = true;
         RobotProperties.isNaVX = false;
         RobotProperties.driveInterface = DriveInterface.ONESTICK;
         RobotProperties.isPneumatics = false;
@@ -188,6 +191,7 @@ public class Robot extends TimedRobot {
         RobotProperties.isPotentiometer = true;
 
         // Drivetrain settings
+        DriveConstants.isInvertdGearBox = false;
         DriveConstants.leftMotorPortID = new int[] { 1 };
         DriveConstants.rightMotorPortID = new int[] { 2 };
         DriveConstants.kLeftEncoderPorts = new int[] { 1 };
@@ -208,6 +212,36 @@ public class Robot extends TimedRobot {
         Robot.simpleCSVLogger.writeData("Subsystem Configured", "DEMOBOARD");
 
         break;
+
+      case C2022:
+
+        // Subsystem Settings
+        RobotProperties.isIMU = false;
+        RobotProperties.isNaVX = false;
+        RobotProperties.driveInterface = DriveInterface.SPLITSTICK;
+        RobotProperties.isPneumatics = false;
+        RobotProperties.isShooter = false;
+        RobotProperties.isPotentiometer = false;
+
+        // Drivetrain settings
+        DriveConstants.isInvertdGearBox = true;
+        DriveConstants.leftMotorPortID = new int[] { 3,4 };
+        DriveConstants.rightMotorPortID = new int[] { 1,2 };
+        DriveConstants.kLeftEncoderPorts = new int[] { 3,4 };
+        DriveConstants.kRightEncoderPorts = new int[] { 1,2 };
+        DriveConstants.kLeftEncoderReversed = false;
+        DriveConstants.kRightEncoderReversed = true;
+
+        // IMU
+
+        // Shooter settings
+
+        //potentiometer     
+
+        Robot.simpleCSVLogger.writeData("Subsystem Configured", "C2022");
+
+        break;
+
       default:
 
         // Subsystem Settings
@@ -217,6 +251,5 @@ public class Robot extends TimedRobot {
     }
 
   }
-
 
 }

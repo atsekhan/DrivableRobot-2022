@@ -23,7 +23,7 @@ package frc.robot;
 public final class Constants {
 
     public static enum RobotModel {
-        FRANKENBOT, DEMOBOARD, C2021
+        FRANKENBOT, DEMOBOARD, C2022
     }
 
     public static enum DriveInterface {
@@ -44,8 +44,9 @@ public final class Constants {
         public static final RobotModel robotModel = RobotModel.DEMOBOARD; // This setting must be set properly !!! It
                                                                           // controls the rest of the setup
 
+        public static boolean isIMU;
         public static boolean isNaVX;
-        public static DriveInterface driveInterface = DriveInterface.ONESTICK;
+        public static DriveInterface driveInterface;
         public static boolean isPneumatics;
         public static boolean isShooter;
         public static boolean isTEMPShooterTest;
@@ -89,6 +90,9 @@ public final class Constants {
     }
 
     public static final class DriveConstants {
+
+        public static boolean isInvertdGearBox = false;
+
         public static int[] leftMotorPortID = new int[] { 1 };
         public static int[] rightMotorPortID = new int[] { 2 };
 
@@ -152,7 +156,7 @@ public final class Constants {
 
     public static final class OIConstants {
         public static final int driverControllerPort = 0;
-        public static final int turnControllerPort = 1;
+        public static final int turnControllerPort = 2;
         public static final int xboxControllerPort = 1;
     }
 
@@ -177,7 +181,7 @@ public final class Constants {
     }
     public static final class ShooterConstants {
 
-        public static int tiltMotorPortID = 5;
+        public static int tiltMotorPortID = 4;
 
         // Closed loop constants
         // How long we wait for a configuration change to happen before we give up and

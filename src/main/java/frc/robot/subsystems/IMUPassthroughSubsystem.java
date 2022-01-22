@@ -31,10 +31,12 @@ public class IMUPassthroughSubsystem implements IMUInterface {
   /** Creates a new IMUSubsystem. */
   public IMUPassthroughSubsystem() {
 
-    if (Constants.RobotProperties.isNaVX) {
-      imu = new NavXIMUSubsystem();
-    } else {
-      imu = new PigeonIMUSubsystem();
+    if (Constants.RobotProperties.isIMU) { // If IMU should be present - set it in Robot.java for each bot type
+      if (Constants.RobotProperties.isNaVX) {
+        imu = new NavXIMUSubsystem();
+      } else {
+        imu = new PigeonIMUSubsystem();
+      }
     }
   }
 

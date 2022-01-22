@@ -14,7 +14,7 @@ import frc.robot.Constants;
 
 public class ShooterSubsystem extends SubsystemBase {
 
-  public static final double CALIBRATEMOTORPOWER = 0.3;
+  public static final double CALIBRATEMOTORPOWER = 0.05;
 
   public static WPI_TalonSRX panMotorController;
 
@@ -22,13 +22,13 @@ public class ShooterSubsystem extends SubsystemBase {
   public ShooterSubsystem() {
 
     if (Constants.RobotProperties.isShooter) {
-      //panMotorController = new WPI_TalonSRX(Constants.ShooterConstants.tiltMotorPortID);
-      panMotorController = new WPI_TalonSRX(5);
+      panMotorController = new WPI_TalonSRX(Constants.ShooterConstants.tiltMotorPortID);
+
       panMotorController.configFactoryDefault();
-      // panMotorController.configSelectedFeedbackSensor(FeedbackDevice.PulseWidthEncodedPosition);
+      panMotorController.configSelectedFeedbackSensor(FeedbackDevice.PulseWidthEncodedPosition);
 
       // Enable PID for the tilt motor
-      // configurePanMotorControllerForPosition();
+      configurePanMotorControllerForPosition();
     }
 
   }

@@ -57,6 +57,7 @@ public class RobotContainer {
 
   // TODO: remove this temporary test when done testing the prototypes
   public static final TEMPShooterTestSubsystem shooterTest = new TEMPShooterTestSubsystem();
+  
 
   public static final ShooterSubsystem shooterSubsystem = new ShooterSubsystem();
 
@@ -113,7 +114,9 @@ public class RobotContainer {
         new DriveManuallyCommand());
 
     // Don't start kinematics untill we're ready
-    navigationControlSubsystem = new NavigationControlSubsystem(driveSubsystem, imuSubsystem);
+    if (Constants.RobotProperties.isIMU) {
+      navigationControlSubsystem = new NavigationControlSubsystem(driveSubsystem, imuSubsystem);
+    }
 
   }
 
@@ -124,8 +127,13 @@ public class RobotContainer {
   private void configureDriverInterface() {
     switch (RobotProperties.driveInterface) {
       case SPLITSTICK: // add 2 sticks
+
+        System.out.println("Add 2 sticks");
         turnStick = new Joystick(OIConstants.turnControllerPort);
+        driveStick = new Joystick(OIConstants.driverControllerPort);
+        break;
       case ONESTICK: // add 1 stick
+        System.out.println("Add 1 stick");
         driveStick = new Joystick(OIConstants.driverControllerPort);
         break;
       case XBOXANDSTICK: // 1 stick and XBOX controller are created
