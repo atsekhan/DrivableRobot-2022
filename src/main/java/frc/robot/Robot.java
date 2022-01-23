@@ -4,6 +4,9 @@
 
 package frc.robot;
 
+import javax.tools.DiagnosticCollector;
+
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
@@ -13,6 +16,7 @@ import frc.robot.Constants.PigeonIMU;
 import frc.robot.Constants.PneumaticsConstants;
 import frc.robot.Constants.PotentiometerConstants;
 import frc.robot.Constants.RobotDriveChassisConstants;
+import frc.robot.Constants.RobotModel;
 import frc.robot.Constants.RobotProperties;
 import frc.robot.Constants.ShooterConstants;
 
@@ -39,6 +43,10 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
+
+    // determine and set robot model based on the DIO jumpers
+    // this needs to be done before any other configuration happens
+    determineRobotModel();
 
     // enable loggin if needed
     if (Constants.RobotProperties.robotLogging) {
@@ -147,6 +155,44 @@ public class Robot extends TimedRobot {
   /** This function is called periodically during test mode. */
   @Override
   public void testPeriodic() {
+  }
+
+  /**
+   * We're determining the robot model based on the jumpers plugged into the DIO port on the RIO
+   * Only one jumper should be installed (though we can use the same method if we get more robots to identify)
+   * 
+   * The following jumper position values will be used:
+   * 
+   * No jumper:   C2022
+   * 9:           DEMOBOARD
+   * 8:           FRANKENBOT
+   */
+  private void determineRobotModel() {
+    int modelNumber = 0;
+    final int startPosition = 8;
+    for (int inputNumber = startPosition; inputNumber <= 9; inputNumber++) {
+      try (DigitalInput input = new DigitalInput(inputNumber)) {
+        if (input.get()) {
+          modelNumber = inputNumber;
+        }
+      } catch (Exception e) { // This should not happen on a RIO, but just in case...
+        System.out.println("Unable to check Digital Input "+inputNumber);
+      }
+    }
+    switch(modelNumber) {
+      case 0:
+              Constants.RobotProperties.robotModel = RobotModel.C2022;
+              break;
+      case 8:
+              Constants.RobotProperties.robotModel = RobotModel.FRANKENBOT;
+              break;
+      case 9:
+              Constants.RobotProperties.robotModel = RobotModel.DEMOBOARD;
+              break;
+      default: // in case something breaks, we assume it's a competiton robot
+              Constants.RobotProperties.robotModel = RobotModel.C2022;
+
+    }
   }
 
   private void configureRobotSettings() {

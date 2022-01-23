@@ -53,7 +53,7 @@ public class SmartDashboardSubsystem extends SubsystemBase {
   public void updateAllDisplays() {
 
     if (Constants.RobotProperties.isIMU) {
-      //updateIMUValues();
+      // updateIMUValues();
     }
 
     updateDriveSubsystemTelemetry();
@@ -66,7 +66,6 @@ public class SmartDashboardSubsystem extends SubsystemBase {
     }
    
   }
-
 
   // Trajectory/kinematic driving update; updated from NavigationControlSubsystem
   public void updateMeterPrint(double left, double right) {

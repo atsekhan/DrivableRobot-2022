@@ -12,7 +12,6 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.Constants.DriveInterface;
 import frc.robot.Constants.OIConstants;
-import frc.robot.Constants.PotentiometerConstants;
 import frc.robot.Constants.RobotProperties;
 import frc.robot.commands.DriveManuallyCommand;
 import frc.robot.commands.ExampleCommand;
@@ -127,13 +126,10 @@ public class RobotContainer {
   private void configureDriverInterface() {
     switch (RobotProperties.driveInterface) {
       case SPLITSTICK: // add 2 sticks
-
-        System.out.println("Add 2 sticks");
         turnStick = new Joystick(OIConstants.turnControllerPort);
         driveStick = new Joystick(OIConstants.driverControllerPort);
         break;
       case ONESTICK: // add 1 stick
-        System.out.println("Add 1 stick");
         driveStick = new Joystick(OIConstants.driverControllerPort);
         break;
       case XBOXANDSTICK: // 1 stick and XBOX controller are created
@@ -144,6 +140,7 @@ public class RobotContainer {
       default: // ONESTICK
         turnStick = new Joystick(OIConstants.turnControllerPort);
     }
+    System.out.println("Driver interface configured as " + RobotProperties.driveInterface.name());
   }
 
   /**

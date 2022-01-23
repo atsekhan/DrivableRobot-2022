@@ -35,7 +35,7 @@ public class DriveSubsystem extends SubsystemBase {
      * defaults setup followers set controller orientation set encoder phase
      */
 
-    System.out.println("DS L " + DriveConstants.leftMotorPortID[0] + " R " + DriveConstants.rightMotorPortID[0] + " Number of motors per side " + DriveConstants.rightMotorPortID.length);
+    System.out.println("Primary Motor - Left " + DriveConstants.leftMotorPortID[0] + " Primary Motor - Right " + DriveConstants.rightMotorPortID[0] + " Number of motors per side " + DriveConstants.rightMotorPortID.length);
 
     for (int motor = 0; motor < DriveConstants.rightMotorPortID.length; motor++) {
       rightDriveTalonFX[motor] = new WPI_TalonFX(DriveConstants.rightMotorPortID[motor]);
@@ -47,8 +47,7 @@ public class DriveSubsystem extends SubsystemBase {
       } else { // setup followers
         rightDriveTalonFX[motor].follow(rightDriveTalonFX[0]);
         rightDriveTalonFX[motor].setInverted(InvertType.FollowMaster); // set green lights when going forward
-        System.out.println("RM " + motor + "IT");
-        //rightDriveTalonFX[motor].setInverted(true);
+        System.out.println("Right Follower " + motor);
       }
     }
 
@@ -61,8 +60,7 @@ public class DriveSubsystem extends SubsystemBase {
       } else { // setup followers
         leftDriveTalonFX[motor].follow(leftDriveTalonFX[0]);
         leftDriveTalonFX[motor].setInverted(InvertType.FollowMaster); // set green lights when going forward
-        System.out.println("LM " + motor + "IF");
-        //leftDriveTalonFX[motor].setInverted(false);
+        System.out.println("Left Follower " + motor);
       }
     }
 
@@ -156,6 +154,9 @@ public class DriveSubsystem extends SubsystemBase {
   }
 
   public void manualDrive(double move, double turn) {
+    
+    // If joysticks will prove to be too sensitive near the center, turn on the deadband driving
+    
     // drive.arcadeDrive(deadbandMove(move), deadbandTurn(turn));
     // System.out.println("D X "+move + " Y " + turn);
     drive.arcadeDrive(move, turn);

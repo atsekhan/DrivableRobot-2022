@@ -27,8 +27,6 @@ public class DriveManuallyCommand extends CommandBase {
 
     double move = 0, turn = 0;
 
-    //System.out.println("DR I " + RobotProperties.driveInterface.name());
-
     switch (RobotProperties.driveInterface) {
       case SPLITSTICK: // add 2 sticks
         move = RobotContainer.driveStick.getY() * (-1);

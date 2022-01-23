@@ -41,7 +41,7 @@ public final class Constants {
          * no pneumatics, Pigeon)
          */
 
-        public static final RobotModel robotModel = RobotModel.DEMOBOARD; // This setting must be set properly !!! It
+        public static RobotModel robotModel = RobotModel.DEMOBOARD; // This setting must be set properly !!! It
                                                                           // controls the rest of the setup
 
         public static boolean isIMU;
