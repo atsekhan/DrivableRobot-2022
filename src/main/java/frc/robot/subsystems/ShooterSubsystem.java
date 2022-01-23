@@ -34,21 +34,49 @@ public class ShooterSubsystem extends SubsystemBase {
   }
 
   public void configurePanMotorControllerForPosition() {
+
+    // Reset Hardware - ex
+    panMotorController.configFactoryDefault();
+
     // Configure the encoders for PID control
-    panMotorController.configSelectedFeedbackSensor(FeedbackDevice.PulseWidthEncodedPosition, Constants.ShooterConstants.PID_PAN,
+    //panMotorController.configSelectedFeedbackSensor(FeedbackDevice.PulseWidthEncodedPosition, Constants.ShooterConstants.PID_PAN,
+    //  Constants.ShooterConstants.configureTimeoutMs);
+
+		/* Config the sensor used for Primary PID and sensor direction  - ex */
+    panMotorController.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 
+      Constants.ShooterConstants.PID_PAN,
       Constants.ShooterConstants.configureTimeoutMs);
 
+  	/* Ensure sensor is positive when output is positive - ex */
+    panMotorController.setSensorPhase(Constants.ShooterConstants.SensorPhase);
+
+    		/**
+		 * Set based on what direction you want forward/positive to be.
+		 * This does not affect sensor phase. - ex 
+		 */ 
+		panMotorController.setInverted(Constants.ShooterConstants.MotorInvert);
+
     /* Configure motor neutral deadband */
-    panMotorController.configNeutralDeadband(Constants.ShooterConstants.NeutralDeadband, Constants.ShooterConstants.configureTimeoutMs);
+    // panMotorController.configNeutralDeadband(Constants.ShooterConstants.NeutralDeadband, Constants.ShooterConstants.configureTimeoutMs);
 
     /**
      * Max out the peak output (for all modes). However you can limit the output of
      * a given PID object with configClosedLoopPeakOutput().
      */
-    panMotorController.configPeakOutputForward(+1, Constants.ShooterConstants.configureTimeoutMs);
-    panMotorController.configPeakOutputReverse(-1, Constants.ShooterConstants.configureTimeoutMs);
+
+    panMotorController.configPeakOutputForward(Constants.ShooterConstants.PeakOutput, Constants.ShooterConstants.configureTimeoutMs);
+    panMotorController.configPeakOutputReverse(Constants.ShooterConstants.PeakOutput*(-1), Constants.ShooterConstants.configureTimeoutMs);
     panMotorController.configNominalOutputForward(0, Constants.ShooterConstants.configureTimeoutMs);
     panMotorController.configNominalOutputReverse(0, Constants.ShooterConstants.configureTimeoutMs);
+
+		/**
+		 * Config the allowable closed-loop error, Closed-Loop output will be
+		 * neutral within this range. See Table in Section 17.2.1 for native
+		 * units per rotation. - ex
+		 */
+		panMotorController.configAllowableClosedloopError(0, Constants.ShooterConstants.SLOT_0, Constants.ShooterConstants.configureTimeoutMs);
+
+		/* Config Position Closed Loop gains in slot0, tsypically kF stays zero. */
 
     /* FPID Gains for pan motor */
 
@@ -56,12 +84,17 @@ public class ShooterSubsystem extends SubsystemBase {
     panMotorController.config_kI(Constants.ShooterConstants.SLOT_0, Constants.ShooterConstants.I_PAN, Constants.ShooterConstants.configureTimeoutMs);
     panMotorController.config_kD(Constants.ShooterConstants.SLOT_0, Constants.ShooterConstants.D_PAN, Constants.ShooterConstants.configureTimeoutMs);
     panMotorController.config_kF(Constants.ShooterConstants.SLOT_0, Constants.ShooterConstants.F_PAN, Constants.ShooterConstants.configureTimeoutMs);
+
+    /* 
+
     panMotorController.configClosedLoopPeakOutput(Constants.ShooterConstants.SLOT_0, Constants.ShooterConstants.PeakOutput_0, Constants.ShooterConstants.configureTimeoutMs);
     panMotorController.configAllowableClosedloopError(Constants.ShooterConstants.SLOT_0, Constants.ShooterConstants.panDefaultAcceptableError, Constants.ShooterConstants.configureTimeoutMs);
 
     panMotorController.configMotionAcceleration(Constants.ShooterConstants.panAcceleration, Constants.ShooterConstants.configureTimeoutMs);
     panMotorController.configMotionCruiseVelocity(Constants.ShooterConstants.panCruiseVelocity, Constants.ShooterConstants.configureTimeoutMs);
     panMotorController.configMotionSCurveStrength(Constants.ShooterConstants.panSmoothing);
+    */
+
     /**
      * 1ms per loop. PID loop can be slowed down if need be. For example, - if
      * sensor updates are too slow - sensor deltas are very small per update, so

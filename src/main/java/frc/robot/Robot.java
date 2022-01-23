@@ -172,6 +172,10 @@ public class Robot extends TimedRobot {
     final int startPosition = 8;
     for (int inputNumber = startPosition; inputNumber <= 9; inputNumber++) {
       try (DigitalInput input = new DigitalInput(inputNumber)) {
+
+        // TODO: remove this print after testing
+        System.out.println("DIO " + inputNumber + " " + input.get());
+
         if (input.get()) {
           modelNumber = inputNumber;
         }
@@ -193,6 +197,11 @@ public class Robot extends TimedRobot {
               Constants.RobotProperties.robotModel = RobotModel.C2022;
 
     }
+
+    System.out.println("Robot model " + Constants.RobotProperties.robotModel + " detected");
+
+    // TODO: remove this override after testing
+    Constants.RobotProperties.robotModel = RobotModel.DEMOBOARD;
   }
 
   private void configureRobotSettings() {

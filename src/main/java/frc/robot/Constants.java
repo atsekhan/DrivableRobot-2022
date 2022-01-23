@@ -193,6 +193,12 @@ public final class Constants {
         public final static int closedLoopPeriodMs = 1;
         // Motor neutral dead-band, set to the minimum 0.1%
         public final static double NeutralDeadband = 0.001;
+        // Sensor phase - to ensure that sensor is positive when the output is positive
+        public final static boolean SensorPhase =  true;
+        // Invert shooter motor
+        public final static boolean MotorInvert =  false;
+        // Peak Output - forward and reverse*(-1)
+        public final static double PeakOutput = 0.3;
 
         public final static int Izone_0 = 500;
         public final static double PeakOutput_0 = 1;
@@ -200,9 +206,18 @@ public final class Constants {
         // Closed loop PAN PID parameter values 
         // Modified for Closed loop position control
         public final static int PID_PAN = 0;
+
+
+        /* 
         public final static double P_PAN = 1.5;
         public final static double I_PAN = 0.0002;
         public final static double D_PAN = 15;
+        */
+        // Gains - ex
+        public final static double P_PAN = 0.15;
+        public final static double I_PAN = 0.0;
+        public final static double D_PAN = 1;
+
         public final static double F_PAN = 0; // set to zero for position closed loop
         // Allowable error to exit movement methods
         public static int panDefaultAcceptableError = 1;
