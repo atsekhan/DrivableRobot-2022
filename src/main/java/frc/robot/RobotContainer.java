@@ -172,7 +172,7 @@ public class RobotContainer {
         new JoystickButton(driveStick, 10).whenReleased(new InstantCommand(shooterSubsystem::tiltMotorOff, shooterSubsystem));
 
         new JoystickButton(driveStick, 7).whenPressed(new TESTShooterArmPosition());
-        new JoystickButton(driveStick, 6).whenPressed(new TESTCalibrateShooterArmWithLimitSwitch());
+        new JoystickButton(driveStick, 8).whenPressed(new TESTCalibrateShooterArmWithLimitSwitch());
 
         break;
 
