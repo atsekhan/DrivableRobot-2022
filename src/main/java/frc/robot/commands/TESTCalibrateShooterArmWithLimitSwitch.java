@@ -48,7 +48,7 @@ public class TESTCalibrateShooterArmWithLimitSwitch extends CommandBase {
 
       System.out.println ("SW " + shooterLimitSwitch.get() + " FC " + failToCalibrate);
 
-      RobotContainer.shooterSubsystem.panMotorController.set(ControlMode.PercentOutput, CALIBRATIONPERCENTOUTPUT);
+      // RobotContainer.shooterSubsystem.panMotorController.set(ControlMode.PercentOutput, CALIBRATIONPERCENTOUTPUT);
 
   }
 
@@ -56,7 +56,7 @@ public class TESTCalibrateShooterArmWithLimitSwitch extends CommandBase {
   @Override
   public void execute() {
     // drive the shooter arm backwards
-    // RobotContainer.shooterSubsystem.panMotorController.set(ControlMode.PercentOutput, CALIBRATIONPERCENTOUTPUT);
+    RobotContainer.shooterSubsystem.panMotorController.set(ControlMode.PercentOutput, CALIBRATIONPERCENTOUTPUT);
   }
 
   // Called once the command ends or is interrupted.
