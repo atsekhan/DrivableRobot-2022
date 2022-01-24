@@ -61,12 +61,13 @@ public class TESTCalibrateShooterArmWithLimitSwitch extends CommandBase {
     // stop the shooter arm motor at the end of the command
     RobotContainer.shooterSubsystem.panMotorController.set(ControlMode.PercentOutput, 0);
 
-    System.out.println("*** Calibration ended");
+    System.out.println("*** Calibration ended. Interrupted: " + interrupted);
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
+    System.out.println("C E " + (failToCalibrate || (! shooterLimitSwitch.get() ))) ;
     return failToCalibrate || (! shooterLimitSwitch.get()) ;
   }
 }
