@@ -67,7 +67,7 @@ public class TESTCalibrateShooterArmWithLimitSwitch extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    System.out.println("C E " + (failToCalibrate || (! shooterLimitSwitch.get() ))) ;
-    return failToCalibrate || (! shooterLimitSwitch.get()) ;
+    System.out.println("C E " + (failToCalibrate ||  shooterLimitSwitch.get() )) ;
+    return failToCalibrate || shooterLimitSwitch.get() ;
   }
 }
