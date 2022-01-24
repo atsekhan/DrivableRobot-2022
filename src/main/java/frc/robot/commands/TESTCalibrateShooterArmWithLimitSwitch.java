@@ -16,7 +16,7 @@ public class TESTCalibrateShooterArmWithLimitSwitch extends CommandBase {
 
   private final double CALIBRATIONPERCENTOUTPUT = -0.2 ; // should be reasonably slow; we do not want to hit the pan hard
   private boolean failToCalibrate = false ; // this will be set if calibration cannot be done, for instance, if the DIO limit cannot be read
-  private DigitalInput shooterLimitSwitch ;
+  private DigitalInput shooterLimitSwitch = new DigitalInput(Constants.ShooterConstants.shooterLimitSwitchDIOPort);
 
   /** Creates a new TESTCalibrateShooterArmWithLimitSwitch. */
   public TESTCalibrateShooterArmWithLimitSwitch() {
@@ -32,6 +32,8 @@ public class TESTCalibrateShooterArmWithLimitSwitch extends CommandBase {
 
     System.out.println("Setting up DIO "+Constants.ShooterConstants.shooterLimitSwitchDIOPort);
 
+
+      /*
       // initialize the limit switch
       try (DigitalInput input = new DigitalInput(Constants.ShooterConstants.shooterLimitSwitchDIOPort)) {
         shooterLimitSwitch = input;
@@ -39,6 +41,8 @@ public class TESTCalibrateShooterArmWithLimitSwitch extends CommandBase {
         System.out.println("--- Unable to check Digital Input "+Constants.ShooterConstants.shooterLimitSwitchDIOPort);
         failToCalibrate = true;
       }
+
+      */
 
       System.out.println("DIO initialized");
 
