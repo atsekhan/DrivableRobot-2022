@@ -22,19 +22,25 @@ public class TESTCalibrateShooterArmWithLimitSwitch extends CommandBase {
   public TESTCalibrateShooterArmWithLimitSwitch() {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(RobotContainer.shooterSubsystem);
+
+    System.out.println("**** Start shooter arm calibration");
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
 
+    System.out.println("Setting up DIO "+Constants.ShooterConstants.shooterLimitSwitchDIOPort);
+
       // initialize the limit switch
       try (DigitalInput input = new DigitalInput(Constants.ShooterConstants.shooterLimitSwitchDIOPort)) {
         shooterLimitSwitch = input;
       } catch (Exception e) { // This should not happen on a RIO, but just in case...
-        System.out.println("Unable to check Digital Input "+Constants.ShooterConstants.shooterLimitSwitchDIOPort);
+        System.out.println("--- Unable to check Digital Input "+Constants.ShooterConstants.shooterLimitSwitchDIOPort);
         failToCalibrate = true;
       }
+
+      System.out.println("DIO initialized");
 
       System.out.println ("SW " + shooterLimitSwitch.get() + " FC " + failToCalibrate);
 
