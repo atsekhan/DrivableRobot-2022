@@ -173,10 +173,9 @@ public class Robot extends TimedRobot {
     for (int inputNumber = startPosition; inputNumber <= 9; inputNumber++) {
       try (DigitalInput input = new DigitalInput(inputNumber)) {
 
-        // TODO: remove this print after testing
         System.out.println("DIO " + inputNumber + " " + input.get());
 
-        if (input.get()) {
+        if ( ! input.get()) { // FALSE means the DIO jumper is installed
           modelNumber = inputNumber;
         }
       } catch (Exception e) { // This should not happen on a RIO, but just in case...
@@ -200,8 +199,6 @@ public class Robot extends TimedRobot {
 
     System.out.println("Robot model " + Constants.RobotProperties.robotModel + " detected");
 
-    // TODO: remove this override after testing
-    Constants.RobotProperties.robotModel = RobotModel.DEMOBOARD;
   }
 
   private void configureRobotSettings() {
@@ -271,9 +268,9 @@ public class Robot extends TimedRobot {
       case C2022:
 
         // Subsystem Settings
-        RobotProperties.isIMU = false;
+        RobotProperties.isIMU = true;
         RobotProperties.isNaVX = false;
-        RobotProperties.driveInterface = DriveInterface.SPLITSTICK;
+        RobotProperties.driveInterface = DriveInterface.ONESTICK;
         RobotProperties.isPneumatics = false;
         RobotProperties.isShooter = false;
         RobotProperties.isPotentiometer = false;
@@ -288,6 +285,7 @@ public class Robot extends TimedRobot {
         DriveConstants.kRightEncoderReversed = true;
 
         // IMU
+        PigeonIMU.pigeonIMUId = 5;
 
         // Shooter settings
 

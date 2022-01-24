@@ -24,8 +24,8 @@ public class ShooterSubsystem extends SubsystemBase {
     if (Constants.RobotProperties.isShooter) {
       panMotorController = new WPI_TalonSRX(Constants.ShooterConstants.tiltMotorPortID);
 
-      panMotorController.configFactoryDefault();
-      panMotorController.configSelectedFeedbackSensor(FeedbackDevice.PulseWidthEncodedPosition);
+      // panMotorController.configFactoryDefault();
+      // panMotorController.configSelectedFeedbackSensor(FeedbackDevice.PulseWidthEncodedPosition);
 
       // Enable PID for the tilt motor
       configurePanMotorControllerForPosition();
@@ -57,7 +57,7 @@ public class ShooterSubsystem extends SubsystemBase {
 		panMotorController.setInverted(Constants.ShooterConstants.MotorInvert);
 
     /* Configure motor neutral deadband */
-    // panMotorController.configNeutralDeadband(Constants.ShooterConstants.NeutralDeadband, Constants.ShooterConstants.configureTimeoutMs);
+    panMotorController.configNeutralDeadband(Constants.ShooterConstants.NeutralDeadband, Constants.ShooterConstants.configureTimeoutMs);
 
     /**
      * Max out the peak output (for all modes). However you can limit the output of
@@ -74,7 +74,9 @@ public class ShooterSubsystem extends SubsystemBase {
 		 * neutral within this range. See Table in Section 17.2.1 for native
 		 * units per rotation. - ex
 		 */
-		panMotorController.configAllowableClosedloopError(0, Constants.ShooterConstants.SLOT_0, Constants.ShooterConstants.configureTimeoutMs);
+		panMotorController.configAllowableClosedloopError(Constants.ShooterConstants.SLOT_0,
+                                      Constants.ShooterConstants.panDefaultAcceptableError,
+                                      Constants.ShooterConstants.configureTimeoutMs);
 
 		/* Config Position Closed Loop gains in slot0, tsypically kF stays zero. */
 
@@ -84,6 +86,20 @@ public class ShooterSubsystem extends SubsystemBase {
     panMotorController.config_kI(Constants.ShooterConstants.SLOT_0, Constants.ShooterConstants.I_PAN, Constants.ShooterConstants.configureTimeoutMs);
     panMotorController.config_kD(Constants.ShooterConstants.SLOT_0, Constants.ShooterConstants.D_PAN, Constants.ShooterConstants.configureTimeoutMs);
     panMotorController.config_kF(Constants.ShooterConstants.SLOT_0, Constants.ShooterConstants.F_PAN, Constants.ShooterConstants.configureTimeoutMs);
+
+		/**
+		 * Grab the 360 degree position of the MagEncoder's absolute
+		 * position, and intitally set the relative sensor to match. - ex
+		 */
+		int absolutePosition = panMotorController.getSensorCollection().getPulseWidthPosition();
+
+		/* Mask out overflows, keep bottom 12 bits */
+		absolutePosition &= 0xFFF;
+		if (Constants.ShooterConstants.SensorPhase) { absolutePosition *= -1; }
+		if (Constants.ShooterConstants.MotorInvert) { absolutePosition *= -1; }
+		
+		/* Set the quadrature (relative) sensor to match absolute */
+		panMotorController.setSelectedSensorPosition(absolutePosition, Constants.ShooterConstants.SLOT_0, Constants.ShooterConstants.configureTimeoutMs);
 
     /* 
 
@@ -101,7 +117,10 @@ public class ShooterSubsystem extends SubsystemBase {
      * derivative error never gets large enough to be useful. - sensor movement is
      * very slow causing the derivative error to be near zero.
      */
+
+    /*
     panMotorController.configClosedLoopPeriod(1, Constants.ShooterConstants.closedLoopPeriodMs, Constants.ShooterConstants.configureTimeoutMs);
+    */
 
   } // End configurePanMotorControllerForPosition
 

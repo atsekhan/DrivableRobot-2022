@@ -8,6 +8,8 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Constants;
 import frc.robot.RobotContainer;
+import frc.robot.Constants.DriveInterface;
+import frc.robot.Constants.RobotProperties;
 
 public class SmartDashboardSubsystem extends SubsystemBase {
   /** Creates a new SmartDashboardSubsystem. */
@@ -50,10 +52,15 @@ public class SmartDashboardSubsystem extends SubsystemBase {
     SmartDashboard.putNumber("Potentiometer Value", RobotContainer.potentiometerSubsystem.getPotVal());
   }
 
+  public void updateOUValues() {
+    SmartDashboard.putNumber("Z-Slider", RobotContainer.driveStick.getRawAxis(3));
+  }
+
+
   public void updateAllDisplays() {
 
     if (Constants.RobotProperties.isIMU) {
-      // updateIMUValues();
+      updateIMUValues();
     }
 
     updateDriveSubsystemTelemetry();
@@ -64,7 +71,11 @@ public class SmartDashboardSubsystem extends SubsystemBase {
     if (Constants.RobotProperties.isPotentiometer) {
       updatePotentiometerValues();
     }
-   
+
+    if (RobotProperties.driveInterface == DriveInterface.ONESTICK) {
+      updateOUValues();
+    }
+
   }
 
   // Trajectory/kinematic driving update; updated from NavigationControlSubsystem
