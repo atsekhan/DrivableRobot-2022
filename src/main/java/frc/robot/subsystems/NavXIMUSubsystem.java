@@ -16,7 +16,7 @@ public class NavXIMUSubsystem extends SubsystemBase implements IMUInterface {
   /** Creates a new NavXSubsystem. */
   public NavXIMUSubsystem() {
     try {
-      NavX = new AHRS(SPI.Port.kMXP);// TODO: Check port num
+      NavX = new AHRS(SPI.Port.kMXP);
     } catch (RuntimeException ex) {
       // TODO: We need to set up a drivers system output system: perhaps Robot.java
       // should catch this exception

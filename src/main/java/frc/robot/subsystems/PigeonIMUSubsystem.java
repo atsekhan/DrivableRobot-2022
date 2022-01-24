@@ -22,7 +22,8 @@ public class PigeonIMUSubsystem extends SubsystemBase implements IMUInterface {
       pigeyTalonSRX = new WPI_TalonSRX(Constants.PigeonIMU.pigeonIMUId);
       pidgey = new PigeonIMU(pigeyTalonSRX);
     } catch (RuntimeException ex) {
-      // TODO:
+      System.out.println("**** Pigeon was expected on CAN " + Constants.PigeonIMU.pigeonIMUId + "but could not be initialized. Check CAN.");
+      // TODO: exception handling
       // at least it will not fail if PidgeonIMU is not there
     }
   }

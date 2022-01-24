@@ -16,7 +16,7 @@ public class ShooterSubsystem extends SubsystemBase {
 
   public static final double CALIBRATEMOTORPOWER = 0.05;
 
-  public static WPI_TalonSRX panMotorController;
+  public WPI_TalonSRX panMotorController;
 
   /** Creates a new ShooterSubsystem. */
   public ShooterSubsystem() {

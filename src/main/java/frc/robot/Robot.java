@@ -256,6 +256,7 @@ public class Robot extends TimedRobot {
 
         // Shooter settings
         ShooterConstants.tiltMotorPortID = 4;
+        ShooterConstants.shooterLimitSwitchDIOPort = 0;
 
         //potentiometer
         PotentiometerConstants.PotentiometerPort = 3;

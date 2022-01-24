@@ -7,11 +7,12 @@ package frc.robot.commands;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants;
 import frc.robot.RobotContainer;
 
 public class TESTShooterArmPosition extends CommandBase {
 
-  private double targetPosition = RobotContainer.shooterSubsystem.getPanEncoder() + 500;
+  private double targetPosition = RobotContainer.shooterSubsystem.getPanEncoder();
 
   /** Creates a new TESTShooterArmPosion. */
   public TESTShooterArmPosition() {
@@ -24,7 +25,7 @@ public class TESTShooterArmPosition extends CommandBase {
   public void initialize() {
 
     // set the rotation position
-    targetPosition = RobotContainer.shooterSubsystem.getPanEncoder() + 1000;
+    targetPosition = RobotContainer.shooterSubsystem.getPanEncoder() + degreesToEncoderClicks(90);
     RobotContainer.shooterSubsystem.panMotorController.set(ControlMode.Position, targetPosition);
     
   }
@@ -32,6 +33,7 @@ public class TESTShooterArmPosition extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    // Test joystic slider for manual elevation change in PID
     double adjustedPosition = targetPosition + (1 - RobotContainer.driveStick.getRawAxis(3)) * 250 ;
     RobotContainer.shooterSubsystem.panMotorController.set(ControlMode.Position, adjustedPosition);
   }
@@ -44,5 +46,9 @@ public class TESTShooterArmPosition extends CommandBase {
   @Override
   public boolean isFinished() {
     return false;
+  }
+
+  public int degreesToEncoderClicks(double degrees) {
+    return (int)(Constants.ShooterConstants.encoderUnitsPerShaftRotation * degrees / 360.0) ;
   }
 }

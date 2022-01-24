@@ -17,6 +17,7 @@ import frc.robot.commands.DriveManuallyCommand;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.FrankenbotExtendSolenoid;
 import frc.robot.commands.FrankenbotRetractSolenoid;
+import frc.robot.commands.TESTCalibrateShooterArmWithLimitSwitch;
 import frc.robot.commands.TESTShooterArmPosition;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.ExampleSubsystem;
@@ -171,6 +172,7 @@ public class RobotContainer {
         new JoystickButton(driveStick, 10).whenReleased(new InstantCommand(shooterSubsystem::tiltMotorOff, shooterSubsystem));
 
         new JoystickButton(driveStick, 7).whenPressed(new TESTShooterArmPosition());
+        new JoystickButton(driveStick, 6).whenPressed(new TESTCalibrateShooterArmWithLimitSwitch());
 
         break;
 
