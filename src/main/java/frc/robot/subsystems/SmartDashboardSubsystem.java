@@ -10,6 +10,7 @@ import frc.robot.Constants;
 import frc.robot.RobotContainer;
 import frc.robot.Constants.DriveInterface;
 import frc.robot.Constants.RobotProperties;
+import edu.wpi.first.wpilibj.util.Color;
 
 public class SmartDashboardSubsystem extends SubsystemBase {
   /** Creates a new SmartDashboardSubsystem. */
@@ -58,7 +59,7 @@ public class SmartDashboardSubsystem extends SubsystemBase {
 
   public void updateColorSensorValues() {
     SmartDashboard.putNumber("Color Sensor Proxility", RobotContainer.colorSensorTestSubsystem.getObjectProximity());
-    SmartDashboard.putString("Color Detected", RobotContainer.colorSensorTestSubsystem.getSeenColor().toString());
+    SmartDashboard.putString("Color Detected", RobotContainer.colorSensorTestSubsystem.getSeenColor());
   }
 
   public void updateAllDisplays() {

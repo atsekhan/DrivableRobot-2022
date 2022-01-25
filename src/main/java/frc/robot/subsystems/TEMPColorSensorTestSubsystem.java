@@ -4,7 +4,9 @@
 
 package frc.robot.subsystems;
 
+import com.revrobotics.ColorMatch;
 import com.revrobotics.ColorSensorV3;
+import com.revrobotics.ColorMatchResult;
 
 import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.util.Color;
@@ -16,6 +18,9 @@ public class TEMPColorSensorTestSubsystem extends SubsystemBase {
   private final I2C.Port i2cPort = I2C.Port.kOnboard;
   private ColorSensorV3 colorSensor;
   private Color lastSeenColor;
+
+  // Color match test
+  private final ColorMatch m_colorMatcher = new ColorMatch();
   
   /** Creates a new TEMPColorSensorTestSubsystem. */
   public TEMPColorSensorTestSubsystem() {
@@ -24,13 +29,32 @@ public class TEMPColorSensorTestSubsystem extends SubsystemBase {
       if (! colorSensor.isConnected()) {  // cannot determine the presence of the sensor, so disable it
         RobotProperties.isColorSensor =  false;
       }
+
+      m_colorMatcher.addColorMatch(Color.kBlue);
+      m_colorMatcher.addColorMatch(Color.kGreen);
+      m_colorMatcher.addColorMatch(Color.kRed);
+      m_colorMatcher.addColorMatch(Color.kYellow);
+
     }
   }
 
-  public Color getSeenColor() {   // It will return most closely matched color as ENUM
-    if (colorSensor.getColor() != null)
-      {lastSeenColor = colorSensor.getColor(); }
-    return lastSeenColor;
+  public String getSeenColor() {   // It will return most closely matched color as ENUM
+    // if (colorSensor.getColor() != null)
+      lastSeenColor = colorSensor.getColor();
+      ColorMatchResult match = m_colorMatcher.matchClosestColor(lastSeenColor);
+      String colorString ;
+      if (match.color == Color.kBlue) {
+        colorString = "Blue";
+      } else if (match.color == Color.kRed) {
+        colorString = "Red";
+      } else if (match.color == Color.kGreen) {
+        colorString = "Green";
+      } else if (match.color == Color.kYellow) {
+        colorString = "Yellow";
+      } else {
+        colorString = "Unknown";
+      }
+    return colorString + " Confidence " + match.confidence;
   }
 
   public int getObjectProximity() {   // It will return most closely matched color as ENUM
