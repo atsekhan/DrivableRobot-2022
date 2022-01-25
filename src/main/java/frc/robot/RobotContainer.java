@@ -30,6 +30,7 @@ import frc.robot.subsystems.PowerDistributionPanelSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
 import frc.robot.subsystems.ShuffleboardSubsystem;
 import frc.robot.subsystems.SmartDashboardSubsystem;
+import frc.robot.subsystems.TEMPColorSensorTestSubsystem;
 /**
  * Temporary testing
  */
@@ -63,6 +64,8 @@ public class RobotContainer {
   public static final ShooterSubsystem shooterSubsystem = new ShooterSubsystem();
 
   public static final PotentiometerSubsystem potentiometerSubsystem = new PotentiometerSubsystem();
+
+  public static final TEMPColorSensorTestSubsystem colorSensorTestSubsystem = new TEMPColorSensorTestSubsystem();
 
   // PowerDistributionBoard - used for telemetry information
   public static final PowerDistributionPanelSubsystem pdpSubsystem = new PowerDistributionPanelSubsystem();

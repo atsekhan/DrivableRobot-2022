@@ -51,6 +51,7 @@ public final class Constants {
         public static boolean isShooter;
         public static boolean isTEMPShooterTest;
         public static boolean isPotentiometer;
+        public static boolean isColorSensor;
 
     }
 

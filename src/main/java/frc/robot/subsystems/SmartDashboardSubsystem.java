@@ -56,6 +56,10 @@ public class SmartDashboardSubsystem extends SubsystemBase {
     SmartDashboard.putNumber("Z-Slider", RobotContainer.driveStick.getRawAxis(3));
   }
 
+  public void updateColorSensorValues() {
+    SmartDashboard.putNumber("Color Sensor Proxility", RobotContainer.colorSensorTestSubsystem.getObjectProximity());
+    SmartDashboard.putString("Color Detected", RobotContainer.colorSensorTestSubsystem.getSeenColor().toString());
+  }
 
   public void updateAllDisplays() {
 
