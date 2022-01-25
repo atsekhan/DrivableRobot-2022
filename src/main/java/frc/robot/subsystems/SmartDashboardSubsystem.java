@@ -76,6 +76,10 @@ public class SmartDashboardSubsystem extends SubsystemBase {
       updatePotentiometerValues();
     }
 
+    if (Constants.RobotProperties.isColorSensor) {
+      updateColorSensorValues();
+    }
+
     if (RobotProperties.driveInterface == DriveInterface.ONESTICK) {
       updateOUValues();
     }
