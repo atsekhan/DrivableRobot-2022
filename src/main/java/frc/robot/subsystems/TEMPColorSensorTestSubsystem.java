@@ -21,6 +21,11 @@ public class TEMPColorSensorTestSubsystem extends SubsystemBase {
 
   // Color match test
   private final ColorMatch m_colorMatcher = new ColorMatch();
+  private final Color kBlueTarget = new Color(0.143, 0.427, 0.429);
+  private final Color kGreenTarget = new Color(0.197, 0.561, 0.240);
+  private final Color kRedTarget = new Color(0.561, 0.232, 0.114);
+  private final Color kYellowTarget = new Color(0.361, 0.524, 0.113);
+
   
   /** Creates a new TEMPColorSensorTestSubsystem. */
   public TEMPColorSensorTestSubsystem() {
@@ -30,10 +35,11 @@ public class TEMPColorSensorTestSubsystem extends SubsystemBase {
         RobotProperties.isColorSensor =  false;
       }
 
-      m_colorMatcher.addColorMatch(Color.kBlue);
-      m_colorMatcher.addColorMatch(Color.kGreen);
-      m_colorMatcher.addColorMatch(Color.kRed);
-      m_colorMatcher.addColorMatch(Color.kYellow);
+           
+      m_colorMatcher.addColorMatch(kBlueTarget);
+      m_colorMatcher.addColorMatch(kGreenTarget);
+      m_colorMatcher.addColorMatch(kRedTarget);
+      m_colorMatcher.addColorMatch(kYellowTarget);
 
     }
   }
@@ -43,18 +49,19 @@ public class TEMPColorSensorTestSubsystem extends SubsystemBase {
       lastSeenColor = colorSensor.getColor();
       ColorMatchResult match = m_colorMatcher.matchClosestColor(lastSeenColor);
       String colorString ;
-      if (match.color == Color.kBlue) {
+      if (match.color == kBlueTarget) {
         colorString = "Blue";
-      } else if (match.color == Color.kRed) {
+      } else if (match.color == kRedTarget) {
         colorString = "Red";
-      } else if (match.color == Color.kGreen) {
+      } else if (match.color == kGreenTarget) {
         colorString = "Green";
-      } else if (match.color == Color.kYellow) {
+      } else if (match.color == kYellowTarget) {
         colorString = "Yellow";
       } else {
         colorString = "Unknown";
       }
-    return colorString + " Confidence " + match.confidence;
+      
+    return colorString + " Confidence " + match.confidence + " RAW " + lastSeenColor;
   }
 
   public int getObjectProximity() {   // It will return most closely matched color as ENUM
