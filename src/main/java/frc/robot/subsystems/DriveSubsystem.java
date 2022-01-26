@@ -14,6 +14,7 @@ import com.ctre.phoenix.motorcontrol.StatusFrame;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 
 import frc.robot.Constants;
+import frc.robot.RobotContainer;
 import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.RobotDriveChassisConstants;
 
@@ -187,6 +188,11 @@ public class DriveSubsystem extends SubsystemBase {
     rightDriveTalonFX[0].setSelectedSensorPosition(0);
     leftDriveTalonFX[0].setSelectedSensorPosition(0);
     driveTrainCoastMode(); // TODO: figure out why this was introduced in 2020
+  }
+
+  public void zeroSRXEncoders() {
+    RobotContainer.shooterSubsystem.panMotorController.setSelectedSensorPosition(0);
+    driveTrainCoastMode();
   }
 
   /**
