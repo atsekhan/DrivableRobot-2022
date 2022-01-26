@@ -147,6 +147,10 @@ public class ShooterSubsystem extends SubsystemBase {
     panMotorController.set(0);
   }
 
+  public void zeroSRXEncoders() {
+    panMotorController.setSelectedSensorPosition(0);
+  }
+
   public int getPanEncoder() {
     return (int) panMotorController.getSelectedSensorPosition();
   }

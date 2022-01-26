@@ -190,11 +190,6 @@ public class DriveSubsystem extends SubsystemBase {
     driveTrainCoastMode(); // TODO: figure out why this was introduced in 2020
   }
 
-  public void zeroSRXEncoders() {
-    RobotContainer.shooterSubsystem.panMotorController.setSelectedSensorPosition(0);
-    driveTrainCoastMode();
-  }
-
   /**
    * Drives the robot using arcade controls.
    *
