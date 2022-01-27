@@ -62,6 +62,9 @@ public class TESTCalibrateShooterArmWithLimitSwitch extends CommandBase {
     // stop the shooter arm motor at the end of the command
     RobotContainer.shooterSubsystem.panMotorController.set(ControlMode.PercentOutput, 0);
 
+    // zero out the shooter arm encoder
+    RobotContainer.shooterSubsystem.zeroSRXEncoders();
+
     System.out.println("*** Calibration ended. Interrupted: " + interrupted);
   }
 
