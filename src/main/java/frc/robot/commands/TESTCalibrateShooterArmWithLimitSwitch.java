@@ -36,11 +36,13 @@ public class TESTCalibrateShooterArmWithLimitSwitch extends CommandBase {
     System.out.println("Setting up DIO "+Constants.ShooterConstants.shooterLimitSwitchDIOPort);
 
       // initialize the limit switch
-      try {
-        shooterLimitSwitch = new DigitalInput(Constants.ShooterConstants.shooterLimitSwitchDIOPort) ;
-      } catch (Exception e) { // This should not happen on a RIO, but just in case...
-        System.out.println("--- Unable to check Digital Input "+Constants.ShooterConstants.shooterLimitSwitchDIOPort);
-        failToCalibrate = true;
+      if(shooterLimitSwitch == null) {
+        try {
+          shooterLimitSwitch = new DigitalInput(Constants.ShooterConstants.shooterLimitSwitchDIOPort) ;
+        } catch (Exception e) { // This should not happen on a RIO, but just in case...
+          System.out.println("--- Unable to check Digital Input "+Constants.ShooterConstants.shooterLimitSwitchDIOPort);
+          failToCalibrate = true;
+        }
       }
 
       System.out.println("DIO initialized");
@@ -52,6 +54,9 @@ public class TESTCalibrateShooterArmWithLimitSwitch extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+
+    System.out.println("Calibrating... " + CALIBRATIONPERCENTOUTPUT);
+
     // drive the shooter arm backwards
     RobotContainer.shooterSubsystem.panMotorController.set(ControlMode.PercentOutput, CALIBRATIONPERCENTOUTPUT);
   }
@@ -71,6 +76,9 @@ public class TESTCalibrateShooterArmWithLimitSwitch extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
+
+    System.out.println("Calibrating - end condition " + failToCalibrate + " " + shooterLimitSwitch.get());
+
     return failToCalibrate || shooterLimitSwitch.get() ;
   }
 }
