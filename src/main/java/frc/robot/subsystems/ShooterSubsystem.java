@@ -147,6 +147,9 @@ public class ShooterSubsystem extends SubsystemBase {
     panMotorController.set(0);
   }
 
+  /**
+   * Zero Shooter Tilt Encoder
+   */
   public void zeroSRXEncoders() {
     panMotorController.setSelectedSensorPosition(0);
   }
