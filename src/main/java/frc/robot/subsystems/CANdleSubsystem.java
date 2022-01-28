@@ -142,13 +142,13 @@ public void decrementAnimation() {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    //if(m_toAnimate == null) {
-    //  m_candle.setLEDs((int)(RobotContainer.xboxControllerCANdle.getLeftTriggerAxis() * 255), 
-    //                    (int)(RobotContainer.xboxControllerCANdle.getRightTriggerAxis() * 255), 
-    //                    (int)(RobotContainer.xboxControllerCANdle.getLeftX() * 255));
-    //} else {
+    if(m_toAnimate == null) {
+      m_candle.setLEDs((int)(RobotContainer.xboxControllerCANdle.getLeftTriggerAxis() * 255), 
+                        (int)(RobotContainer.xboxControllerCANdle.getRightTriggerAxis() * 255), 
+                        (int)(RobotContainer.xboxControllerCANdle.getLeftX() * 255));
+    } else {
       m_candle.animate(m_toAnimate);
-    //}
+    }
     m_candle.modulateVBatOutput(RobotContainer.xboxControllerCANdle.getRightY());
   }
 }
