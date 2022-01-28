@@ -153,6 +153,9 @@ public class RobotContainer {
     System.out.println("Driver interface configured as " + RobotProperties.driveInterface.name());
 
     if (Constants.RobotProperties.isCANdle) {
+
+      System.out.println(" ** Creating XBOX for CANdle");
+
       xboxControllerCANdle = new XboxController(CANdleConstants.XBOXPort);
     }
   }
