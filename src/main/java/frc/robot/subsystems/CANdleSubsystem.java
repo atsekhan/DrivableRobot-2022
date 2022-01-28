@@ -49,7 +49,7 @@ private AnimationTypes m_currentAnimation;
 
       changeAnimation(AnimationTypes.SetAll);
       CANdleConfiguration configAll = new CANdleConfiguration();
-      configAll.statusLedOffWhenActive = true;
+      configAll.statusLedOffWhenActive = false;
       configAll.disableWhenLOS = false;
       configAll.stripType = LEDStripType.GRB;
       configAll.brightnessScalar = 0.1;
