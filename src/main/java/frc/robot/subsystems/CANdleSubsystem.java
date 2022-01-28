@@ -25,8 +25,6 @@ public class CANdleSubsystem extends SubsystemBase {
   private final int LedCount = 300;
   private Animation m_toAnimate = null;
 
-  private XboxController joystick;
-
   public enum AnimationTypes {
     ColorFlow,
     Fire,
@@ -46,9 +44,8 @@ private AnimationTypes m_currentAnimation;
 
     if (Constants.RobotProperties.isCANdle) {
       m_candle = new CANdle(Constants.CANdleConstants.CANdlePort, "FastFD");
-      this.joystick = RobotContainer.xboxControllerCANdle;
 
-      System.out.println("*** X " + joystick.getButtonCount());
+      System.out.println("*** X " + RobotContainer.xboxControllerCANdle.getButtonCount());
 
       changeAnimation(AnimationTypes.SetAll);
       CANdleConfiguration configAll = new CANdleConfiguration();
@@ -146,12 +143,12 @@ public void decrementAnimation() {
   public void periodic() {
     // This method will be called once per scheduler run
     //if(m_toAnimate == null) {
-    //  m_candle.setLEDs((int)(joystick.getLeftTriggerAxis() * 255), 
-    //                    (int)(joystick.getRightTriggerAxis() * 255), 
-    //                    (int)(joystick.getLeftX() * 255));
+    //  m_candle.setLEDs((int)(RobotContainer.xboxControllerCANdle.getLeftTriggerAxis() * 255), 
+    //                    (int)(RobotContainer.xboxControllerCANdle.getRightTriggerAxis() * 255), 
+    //                    (int)(RobotContainer.xboxControllerCANdle.getLeftX() * 255));
     //} else {
       m_candle.animate(m_toAnimate);
     //}
-    m_candle.modulateVBatOutput(joystick.getRightY());
+    m_candle.modulateVBatOutput(RobotContainer.xboxControllerCANdle.getRightY());
   }
 }
