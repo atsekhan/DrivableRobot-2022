@@ -21,7 +21,7 @@ import frc.robot.RobotContainer;
 
 public class CANdleSubsystem extends SubsystemBase {
 
-  private final CANdle m_candle = new CANdle(Constants.CANdleConstants.CANdlePort, "FastFD");
+  private CANdle m_candle;
   private final int LedCount = 300;
   private Animation m_toAnimate = null;
 
@@ -43,15 +43,22 @@ private AnimationTypes m_currentAnimation;
 
   /** Creates a new CANdleSubsystem. */
   public CANdleSubsystem() {
-    this.joystick = RobotContainer.xboxControllerCANdle;
-    changeAnimation(AnimationTypes.SetAll);
-    CANdleConfiguration configAll = new CANdleConfiguration();
-    configAll.statusLedOffWhenActive = true;
-    configAll.disableWhenLOS = false;
-    configAll.stripType = LEDStripType.GRB;
-    configAll.brightnessScalar = 0.1;
-    configAll.vBatOutputMode = VBatOutputMode.Modulated;
-    m_candle.configAllSettings(configAll, 100);
+
+    if (Constants.RobotProperties.isCANdle) {
+      m_candle = new CANdle(Constants.CANdleConstants.CANdlePort, "FastFD");
+      this.joystick = RobotContainer.xboxControllerCANdle;
+
+      System.out.println("*** X " + joystick.getButtonCount());
+
+      changeAnimation(AnimationTypes.SetAll);
+      CANdleConfiguration configAll = new CANdleConfiguration();
+      configAll.statusLedOffWhenActive = true;
+      configAll.disableWhenLOS = false;
+      configAll.stripType = LEDStripType.GRB;
+      configAll.brightnessScalar = 0.1;
+      configAll.vBatOutputMode = VBatOutputMode.Modulated;
+      m_candle.configAllSettings(configAll, 100);
+    }
   }
 
   public void incrementAnimation() {
@@ -138,13 +145,13 @@ public void decrementAnimation() {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    if(m_toAnimate == null) {
-      m_candle.setLEDs((int)(joystick.getLeftTriggerAxis() * 255), 
-                        (int)(joystick.getRightTriggerAxis() * 255), 
-                        (int)(joystick.getLeftX() * 255));
-    } else {
+    //if(m_toAnimate == null) {
+    //  m_candle.setLEDs((int)(joystick.getLeftTriggerAxis() * 255), 
+    //                    (int)(joystick.getRightTriggerAxis() * 255), 
+    //                    (int)(joystick.getLeftX() * 255));
+    //} else {
       m_candle.animate(m_toAnimate);
-    }
+    //}
     m_candle.modulateVBatOutput(joystick.getRightY());
   }
 }
