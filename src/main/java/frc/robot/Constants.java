@@ -4,6 +4,8 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.XboxController;
+
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide
  * numerical or boolean constants. This class should not be used for any other
@@ -52,6 +54,7 @@ public final class Constants {
         public static boolean isTEMPShooterTest;
         public static boolean isPotentiometer;
         public static boolean isColorSensor;
+        public static boolean isCANdle;
 
     }
 
@@ -237,6 +240,23 @@ public final class Constants {
         * Talon PID methods often demand slot ID's, so we need to do this :(
         */
         public final static int SLOT_0 = 0;
+
+    }
+
+    public static final class CANdleConstants {
+
+        public static int CANdlePort = 3;
+        public static final int XBOXPort = 1 ; // to control CANdle
+        public static final int IncrementAnimButton = XboxController.Button.kRightBumper.value;
+        public static final int DecrementAnimButton = XboxController.Button.kLeftBumper.value;
+        public static final int BlockButton = XboxController.Button.kStart.value;
+        public static final int MaxBrightnessAngle = 90;
+        public static final int MidBrightnessAngle = 180;
+        public static final int ZeroBrightnessAngle = 270;
+        public static final int VbatButton = XboxController.Button.kA.value;
+        public static final int V5Button = XboxController.Button.kB.value;
+        public static final int CurrentButton = XboxController.Button.kX.value;
+        public static final int TemperatureButton = XboxController.Button.kY.value;
 
     }
 

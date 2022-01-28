@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import frc.robot.Constants.CANdleConstants;
 import frc.robot.Constants.DriveInterface;
 import frc.robot.Constants.OIConstants;
 import frc.robot.Constants.RobotProperties;
@@ -19,6 +20,7 @@ import frc.robot.commands.FrankenbotExtendSolenoid;
 import frc.robot.commands.FrankenbotRetractSolenoid;
 import frc.robot.commands.TESTCalibrateShooterArmWithLimitSwitch;
 import frc.robot.commands.TESTShooterArmPosition;
+import frc.robot.subsystems.CANdleSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.IMUPassthroughSubsystem;
@@ -64,6 +66,8 @@ public class RobotContainer {
   public static final ShooterSubsystem shooterSubsystem = new ShooterSubsystem();
 
   public static final PotentiometerSubsystem potentiometerSubsystem = new PotentiometerSubsystem();
+  
+  public static final CANdleSubsystem candleSubsystem = new CANdleSubsystem();
 
   public static final TEMPColorSensorTestSubsystem colorSensorTestSubsystem = new TEMPColorSensorTestSubsystem();
 
@@ -84,6 +88,7 @@ public class RobotContainer {
   public static Joystick driveStick;
   public static Joystick turnStick;
   public static XboxController xboxController;
+  public static XboxController xboxControllerCANdle;
 
   // = new Joystick(OIConstants.driverControllerPort);
 
@@ -146,6 +151,10 @@ public class RobotContainer {
         turnStick = new Joystick(OIConstants.turnControllerPort);
     }
     System.out.println("Driver interface configured as " + RobotProperties.driveInterface.name());
+
+    if (Constants.RobotProperties.isCANdle) {
+      xboxControllerCANdle = new XboxController(CANdleConstants.XBOXPort);
+    }
   }
 
   /**
@@ -176,6 +185,12 @@ public class RobotContainer {
 
         new JoystickButton(driveStick, 7).whenPressed(new TESTShooterArmPosition());
         new JoystickButton(driveStick, 8).whenPressed(new TESTCalibrateShooterArmWithLimitSwitch());
+
+        if (Constants.RobotProperties.isCANdle) {
+          new JoystickButton(xboxControllerCANdle, Constants.CANdleConstants.BlockButton).whenPressed(candleSubsystem::setColors, candleSubsystem);
+          new JoystickButton(xboxControllerCANdle, Constants.CANdleConstants.IncrementAnimButton).whenPressed(candleSubsystem::incrementAnimation, candleSubsystem);
+          new JoystickButton(xboxControllerCANdle, Constants.CANdleConstants.DecrementAnimButton).whenPressed(candleSubsystem::decrementAnimation, candleSubsystem);
+        }
 
         break;
 
