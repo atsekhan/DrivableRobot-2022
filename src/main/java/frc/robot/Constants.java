@@ -245,7 +245,7 @@ public final class Constants {
 
     public static final class CANdleConstants {
 
-        public static final int CANdlePort = 20;
+        public static final int CANdlePort = 6;
         public static final int XBOXPort = 1 ; // to control CANdle
         public static final int IncrementAnimButton = XboxController.Button.kRightBumper.value;
         public static final int DecrementAnimButton = XboxController.Button.kLeftBumper.value;

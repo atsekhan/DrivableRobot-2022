@@ -44,7 +44,7 @@ private AnimationTypes m_currentAnimation;
 
     if (Constants.RobotProperties.isCANdle) {
       // m_candle = new CANdle(Constants.CANdleConstants.CANdlePort, "FastFD");
-      m_candle = new CANdle(6);
+      m_candle = new CANdle(Constants.CANdleConstants.CANdlePort);
       
 
       changeAnimation(AnimationTypes.SetAll);
