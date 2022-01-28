@@ -45,7 +45,7 @@ private AnimationTypes m_currentAnimation;
     if (Constants.RobotProperties.isCANdle) {
       m_candle = new CANdle(Constants.CANdleConstants.CANdlePort, "FastFD");
 
-      System.out.println("*** X " + RobotContainer.xboxControllerCANdle.getButtonCount());
+      
 
       changeAnimation(AnimationTypes.SetAll);
       CANdleConfiguration configAll = new CANdleConfiguration();

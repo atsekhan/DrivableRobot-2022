@@ -157,6 +157,9 @@ public class RobotContainer {
       System.out.println(" ** Creating XBOX for CANdle");
 
       xboxControllerCANdle = new XboxController(CANdleConstants.XBOXPort);
+
+      System.out.println("*** X " + xboxControllerCANdle.getButtonCount());
+
     }
   }
 
