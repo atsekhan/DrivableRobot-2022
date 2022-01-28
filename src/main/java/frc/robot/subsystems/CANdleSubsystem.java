@@ -55,6 +55,9 @@ private AnimationTypes m_currentAnimation;
       configAll.brightnessScalar = 0.1;
       configAll.vBatOutputMode = VBatOutputMode.Modulated;
       m_candle.configAllSettings(configAll, 100);
+
+      m_candle.setLEDs(50, 60, 70, 80, 0, 2);
+
     }
   }
 
