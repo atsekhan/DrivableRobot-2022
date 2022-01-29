@@ -95,6 +95,18 @@ public class SmartDashboardSubsystem extends SubsystemBase {
     SmartDashboard.putNumber("right m", right);
 
   }
+//LED lights up red or blue according to what colored ball the sensor picks up
+
+  public void ballColorChange(){
+    if (RobotContainer.colorSensorTestSubsystem.isBallBlue()){
+      setLEDBlue();
+    }
+    
+    if (RobotContainer.colorSensorTestSubsystem.isBallRed()){
+      setLEDRed();
+    }
+  }
+
 
   @Override
   public void periodic() {

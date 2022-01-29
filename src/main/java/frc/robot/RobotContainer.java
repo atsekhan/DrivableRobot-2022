@@ -60,7 +60,6 @@ public class RobotContainer {
   // TODO: remove this temporary test when done testing the prototypes
   public static final TEMPShooterTestSubsystem shooterTest = new TEMPShooterTestSubsystem();
   
-
   public static final ShooterSubsystem shooterSubsystem = new ShooterSubsystem();
 
   public static final PotentiometerSubsystem potentiometerSubsystem = new PotentiometerSubsystem();

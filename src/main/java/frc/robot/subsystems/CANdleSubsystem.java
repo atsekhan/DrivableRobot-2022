@@ -65,14 +65,14 @@ public class CANdleSubsystem extends SubsystemBase {
 
 //tasks: Create 3 methods: LED=green, LED=blue, LED off
 
-public void setLEDGreen()
-{
-  m_candle.setLEDs(10,200,10);
-}
-
 public void setLEDBlue()
 {
   m_candle.setLEDs(10,10,200);
+}
+
+public void setLEDRed()
+{
+  m_candle.setLEDs(200,10,10);
 }
 
 public void setLEDOff()
