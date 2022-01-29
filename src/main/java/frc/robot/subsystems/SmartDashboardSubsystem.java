@@ -64,6 +64,16 @@ public class SmartDashboardSubsystem extends SubsystemBase {
     SmartDashboard.putBoolean("Blue Ball Detected", RobotContainer.colorSensorTestSubsystem.isBallBlue());
   }
 
+  public void ballColorChange(){
+    if (RobotContainer.colorSensorTestSubsystem.isBallBlue()){
+      RobotContainer.candleSubsystem.setLEDBlue();
+    } else if (RobotContainer.colorSensorTestSubsystem.isBallRed()){
+      RobotContainer.candleSubsystem.setLEDRed();
+    } else {
+      RobotContainer.candleSubsystem.setLEDOff();
+    }
+  }
+
   public void updateAllDisplays() {
 
     if (Constants.RobotProperties.isIMU) {
@@ -83,6 +93,10 @@ public class SmartDashboardSubsystem extends SubsystemBase {
       updateColorSensorValues();
     }
 
+    if (Constants.RobotProperties.isCANdle) {
+      ballColorChange();
+    }
+
     if (RobotProperties.driveInterface == DriveInterface.ONESTICK) {
       updateOUValues();
     }
@@ -95,17 +109,9 @@ public class SmartDashboardSubsystem extends SubsystemBase {
     SmartDashboard.putNumber("right m", right);
 
   }
-//LED lights up red or blue according to what colored ball the sensor picks up
 
-  public void ballColorChange(){
-    if (RobotContainer.colorSensorTestSubsystem.isBallBlue()){
-      RobotContainer.candleSubsystem.setLEDBlue();
-    }
-    
-    if (RobotContainer.colorSensorTestSubsystem.isBallRed()){
-      RobotContainer.candleSubsystem.setLEDRed();
-    }
-  }
+
+
 
 
   @Override
