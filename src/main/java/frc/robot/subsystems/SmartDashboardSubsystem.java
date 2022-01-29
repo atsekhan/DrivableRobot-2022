@@ -99,11 +99,11 @@ public class SmartDashboardSubsystem extends SubsystemBase {
 
   public void ballColorChange(){
     if (RobotContainer.colorSensorTestSubsystem.isBallBlue()){
-      setLEDBlue();
+      RobotContainer.candleSubsystem.setLEDBlue();
     }
     
     if (RobotContainer.colorSensorTestSubsystem.isBallRed()){
-      setLEDRed();
+      RobotContainer.candleSubsystem.setLEDRed();
     }
   }
 
