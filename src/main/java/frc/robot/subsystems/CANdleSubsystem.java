@@ -61,4 +61,22 @@ public class CANdleSubsystem extends SubsystemBase {
 
   private void changeAnimation(AnimationTypes setall) {
   }
+
+
+//tasks: Create 3 methods: LED=green, LED=blue, LED off
+
+public void setLEDGreen()
+{
+  m_candle.setLEDs(10,200,10);
+}
+
+public void setLEDBlue()
+{
+  m_candle.setLEDs(10,10,200);
+}
+
+public void setLEDOff()
+{
+  m_candle.setLEDs(0,0,0);
+}
 }
