@@ -58,8 +58,10 @@ public class SmartDashboardSubsystem extends SubsystemBase {
   }
 
   public void updateColorSensorValues() {
-    SmartDashboard.putNumber("Color Sensor Proxility", RobotContainer.colorSensorTestSubsystem.getObjectProximity());
+    SmartDashboard.putNumber("Color Sensor Proximity", RobotContainer.colorSensorTestSubsystem.getObjectProximity());
     SmartDashboard.putString("Color Detected", RobotContainer.colorSensorTestSubsystem.getSeenColor());
+    SmartDashboard.putBoolean("Red Ball Detected", RobotContainer.colorSensorTestSubsystem.isBallRed());
+    SmartDashboard.putBoolean("Blue Ball Detected", RobotContainer.colorSensorTestSubsystem.isBallBlue());
   }
 
   public void updateAllDisplays() {

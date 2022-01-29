@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.util.Color;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.RobotProperties;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class TEMPColorSensorTestSubsystem extends SubsystemBase {
 
@@ -48,7 +49,7 @@ public class TEMPColorSensorTestSubsystem extends SubsystemBase {
     // if (colorSensor.getColor() != null)
       lastSeenColor = colorSensor.getColor();
       ColorMatchResult match = m_colorMatcher.matchClosestColor(lastSeenColor);
-      String colorString ;
+      String colorString;
       if (match.color == kBlueTarget) {
         colorString = "Blue";
       } else if (match.color == kRedTarget) {
@@ -66,6 +67,24 @@ public class TEMPColorSensorTestSubsystem extends SubsystemBase {
 
   public int getObjectProximity() {   // It will return most closely matched color as ENUM
     return colorSensor.getProximity();
+  }
+
+  public boolean isBallRed(){    // Will return if a ball is red
+    lastSeenColor = colorSensor.getColor();
+    ColorMatchResult match = m_colorMatcher.matchClosestColor(lastSeenColor);
+    if (match.color == kRedTarget)
+      return true;
+    else
+      return false;
+  }
+
+  public boolean isBallBlue(){     // Will return if a ball is blue
+    lastSeenColor = colorSensor.getColor();
+    ColorMatchResult match = m_colorMatcher.matchClosestColor(lastSeenColor);
+    if (match.color == kBlueTarget)
+      return true;
+    else
+      return false;
   }
 
   @Override
