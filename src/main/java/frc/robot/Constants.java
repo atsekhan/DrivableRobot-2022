@@ -53,6 +53,8 @@ public final class Constants {
         public static boolean isPotentiometer;
         public static boolean isColorSensor;
 
+        public static boolean isCANdle;
+
     }
 
     public static final class RobotDriveChassisConstants { // configure the physical properties unique to the robot
