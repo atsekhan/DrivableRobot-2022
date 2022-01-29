@@ -71,14 +71,12 @@ public class TEMPColorSensorTestSubsystem extends SubsystemBase {
 
   public boolean isBallRed(){    // Will return true if a ball is red
     lastSeenColor = colorSensor.getColor();
-    ColorMatchResult match = colorMatcher.matchClosestColor(lastSeenColor);
-    return  (match.color == kRedTarget) ;
+    return  (colorMatcher.matchClosestColor(lastSeenColor).color == kRedTarget) ;
   }
 
   public boolean isBallBlue(){     // Will return true if a ball is blue
     lastSeenColor = colorSensor.getColor();
-    ColorMatchResult match = colorMatcher.matchClosestColor(lastSeenColor);
-    return (match.color == kBlueTarget) ;
+    return (colorMatcher.matchClosestColor(lastSeenColor).color == kBlueTarget) ;
   }
 
   @Override
