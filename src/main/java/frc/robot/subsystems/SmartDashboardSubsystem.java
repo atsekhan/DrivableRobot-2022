@@ -66,6 +66,9 @@ public class SmartDashboardSubsystem extends SubsystemBase {
 
   public void ballColorChange(){
     if (RobotContainer.colorSensorTestSubsystem.isBallBlue()){
+
+      System.out.println("CANDLE - Blue Detected");
+
       RobotContainer.candleSubsystem.setLEDBlue();
     } else if (RobotContainer.colorSensorTestSubsystem.isBallRed()){
       RobotContainer.candleSubsystem.setLEDRed();

@@ -21,7 +21,7 @@ import frc.robot.RobotContainer;
 
 public class CANdleSubsystem extends SubsystemBase {
 
-  private CANdle m_candle;
+  private CANdle candle;
   private final int LedCount = 8;
   private Animation m_toAnimate = null;
 
@@ -42,7 +42,10 @@ public class CANdleSubsystem extends SubsystemBase {
 
     if (Constants.RobotProperties.isCANdle) {
       // m_candle = new CANdle(Constants.CANdleConstants.CANdlePort, "FastFD");
-      m_candle = new CANdle(Constants.CANdleConstants.CANdlePort);
+
+      System.out.println("Initializing CANdle");
+
+      candle = new CANdle(Constants.CANdleConstants.CANdlePort);
       
 
       changeAnimation(AnimationTypes.SetAll);
@@ -52,9 +55,10 @@ public class CANdleSubsystem extends SubsystemBase {
       configAll.stripType = LEDStripType.GRB;
       configAll.brightnessScalar = 0.1;
       configAll.vBatOutputMode = VBatOutputMode.Modulated;
-      m_candle.configAllSettings(configAll, 100);
+      candle.configAllSettings(configAll, 100);
 
       // m_candle.setLEDs(50, 60, 70, 80, 0, 2);
+      System.out.println("CANdle initalization complete");
 
     }
   }
@@ -63,20 +67,26 @@ public class CANdleSubsystem extends SubsystemBase {
   }
 
 
-//tasks: Create 3 methods: LED=green, LED=blue, LED off
+  //tasks: Create 3 methods: LED=red, LED=blue, LED off
 
-public void setLEDBlue()
-{
-  m_candle.setLEDs(10,10,200);
-}
+  public void setLEDBlue()
+  {
 
-public void setLEDRed()
-{
-  m_candle.setLEDs(200,10,10);
-}
+    System.out.println("Set CANDLE blue");
 
-public void setLEDOff()
-{
-  m_candle.setLEDs(0,0,0);
-}
+    candle.setLEDs(10,10,200);
+    candle.modulateVBatOutput(0.9);
+  }
+
+  public void setLEDRed()
+  {
+    candle.setLEDs(200,10,10);
+    candle.modulateVBatOutput(0.9);
+  }
+
+  public void setLEDOff()
+  {
+    candle.setLEDs(0,0,0);
+    candle.modulateVBatOutput(0);
+  }
 }
