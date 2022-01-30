@@ -52,6 +52,7 @@ public final class Constants {
         public static boolean isTEMPShooterTest;
         public static boolean isPotentiometer;
         public static boolean isColorSensor;
+        public static boolean isCANdle;
 
     }
 
@@ -237,6 +238,16 @@ public final class Constants {
         * Talon PID methods often demand slot ID's, so we need to do this :(
         */
         public final static int SLOT_0 = 0;
+
+    }
+
+    public static final class CANdleConstants {
+
+        public static final int CANdlePort = 6;
+        public static final int XBOXPort = 1 ; // to control CANdle
+        public static final int MaxBrightnessAngle = 90;
+        public static final int MidBrightnessAngle = 180;
+        public static final int ZeroBrightnessAngle = 270;
 
     }
 

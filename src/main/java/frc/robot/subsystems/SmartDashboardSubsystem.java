@@ -10,8 +10,6 @@ import frc.robot.Constants;
 import frc.robot.RobotContainer;
 import frc.robot.Constants.DriveInterface;
 import frc.robot.Constants.RobotProperties;
-import edu.wpi.first.wpilibj.util.Color;
-
 public class SmartDashboardSubsystem extends SubsystemBase {
   /** Creates a new SmartDashboardSubsystem. */
   public SmartDashboardSubsystem() {
@@ -64,6 +62,16 @@ public class SmartDashboardSubsystem extends SubsystemBase {
     SmartDashboard.putBoolean("Blue Ball Detected", RobotContainer.colorSensorTestSubsystem.isBallBlue());
   }
 
+  public void ballColorChange(){
+    if (RobotContainer.colorSensorTestSubsystem.isBallBlue()){
+      RobotContainer.candleSubsystem.setLEDBlue();
+    } else if (RobotContainer.colorSensorTestSubsystem.isBallRed()){
+      RobotContainer.candleSubsystem.setLEDRed();
+    } else {
+      RobotContainer.candleSubsystem.setLEDOff();
+    }
+  }
+
   public void updateAllDisplays() {
 
     if (Constants.RobotProperties.isIMU) {
@@ -83,6 +91,10 @@ public class SmartDashboardSubsystem extends SubsystemBase {
       updateColorSensorValues();
     }
 
+    if (Constants.RobotProperties.isCANdle) {
+      ballColorChange();
+    }
+
     if (RobotProperties.driveInterface == DriveInterface.ONESTICK) {
       updateOUValues();
     }
@@ -95,6 +107,10 @@ public class SmartDashboardSubsystem extends SubsystemBase {
     SmartDashboard.putNumber("right m", right);
 
   }
+
+
+
+
 
   @Override
   public void periodic() {

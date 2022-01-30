@@ -19,6 +19,7 @@ import frc.robot.commands.FrankenbotExtendSolenoid;
 import frc.robot.commands.FrankenbotRetractSolenoid;
 import frc.robot.commands.TESTCalibrateShooterArmWithLimitSwitch;
 import frc.robot.commands.TESTShooterArmPosition;
+import frc.robot.subsystems.CANdleSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.IMUPassthroughSubsystem;
@@ -60,10 +61,11 @@ public class RobotContainer {
   // TODO: remove this temporary test when done testing the prototypes
   public static final TEMPShooterTestSubsystem shooterTest = new TEMPShooterTestSubsystem();
   
-
   public static final ShooterSubsystem shooterSubsystem = new ShooterSubsystem();
 
   public static final PotentiometerSubsystem potentiometerSubsystem = new PotentiometerSubsystem();
+
+  public static final CANdleSubsystem candleSubsystem = new CANdleSubsystem();
 
   public static final TEMPColorSensorTestSubsystem colorSensorTestSubsystem = new TEMPColorSensorTestSubsystem();
 
