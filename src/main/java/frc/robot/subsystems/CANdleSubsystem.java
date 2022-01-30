@@ -4,26 +4,18 @@
 
 package frc.robot.subsystems;
 
-import com.ctre.phoenix.led.Animation;
 import com.ctre.phoenix.led.CANdle;
 import com.ctre.phoenix.led.CANdle.*;
 import com.ctre.phoenix.led.*;
-import com.ctre.phoenix.led.ColorFlowAnimation.Direction;
-import com.ctre.phoenix.led.LarsonAnimation.BounceMode;
-import com.ctre.phoenix.led.TwinkleAnimation.TwinklePercent;
-import com.ctre.phoenix.led.TwinkleOffAnimation.TwinkleOffPercent;
 
-import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
-import frc.robot.RobotContainer;
 
 public class CANdleSubsystem extends SubsystemBase {
 
   private CANdle candle;
-  private final int LedCount = 8;
-  private Animation m_toAnimate = null;
+  // private final int LedCount = 8;
+  // private Animation m_toAnimate = null;
 
   public enum AnimationTypes {
     ColorFlow,
