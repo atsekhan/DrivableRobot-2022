@@ -22,7 +22,7 @@ import frc.robot.RobotContainer;
 public class CANdleSubsystem extends SubsystemBase {
 
   private CANdle m_candle;
-  private final int LedCount = 8;
+  private final int LedCount = 100;
   private Animation m_toAnimate = null;
 
   public enum AnimationTypes {
